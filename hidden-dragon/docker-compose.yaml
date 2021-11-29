@@ -14,8 +14,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: "cmpe172"
     restart: always     
-  gumball:
-    image: spring-gumball
+  drugStore:
+    image: hidden-dragon
     depends_on:
     - mysql    
     volumes:
@@ -30,12 +30,12 @@ services:
   lb:
     image: eeacms/haproxy
     depends_on:
-    - gumball
+    - hidden-dragon
     ports:
     - "80:5000"
     - "1936:1936"
     environment:
-      BACKENDS: "gumball"
+      BACKENDS: "hidden-dragon"
       BACKENDS_PORT: "8080"
       DNS_ENABLED: "true"
       COOKIES_ENABLED: "false"
