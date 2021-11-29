@@ -18,7 +18,7 @@ DROP TABLE IF EXISTS `cmpe172`.`item` ;
 CREATE TABLE IF NOT EXISTS `cmpe172`.`item` (
   `item_id` INT NOT NULL,
   `item_name` VARCHAR(20) NOT NULL,
-  `price` INT NULL,
+  `price` DECIMAL(10,2) NULL,
   `stock` INT NULL,
   PRIMARY KEY (`item_id`))
 ENGINE = InnoDB;
