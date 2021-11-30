@@ -24,7 +24,7 @@ CREATE TABLE IF NOT EXISTS `cmpe172`.`item` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
--- Table `cmpe172`.`person`
+-- Table `cmpe172`.`user`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `cmpe172`.`user` ;
 
@@ -33,6 +33,29 @@ CREATE TABLE IF NOT EXISTS `cmpe172`.`user` (
   `username` VARCHAR(20) NOT NULL,
   `password` VARCHAR(20) NULL,
   PRIMARY KEY (`user_id`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `cmpe172`.`cart`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `cmpe172`.`cart` ;
+
+CREATE TABLE IF NOT EXISTS `cmpe172`.`cart` (
+  `cart_id` INT NOT NULL AUTO_INCREMENT,
+  `user_id` INT NOT NULL,
+  PRIMARY KEY (`cart_id`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `cmpe172`.`cart_item`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `cmpe172`.`cart_item` ;
+
+CREATE TABLE IF NOT EXISTS `cmpe172`.`cart_item` (
+  `cart_id` INT NOT NULL,
+  `item_id` INT NOT NULL,
+  `quantity` INT NOT NULL,
+  PRIMARY KEY (`cart_id`,`item_id`))
 ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;

@@ -20,7 +20,7 @@ public class User {
   public Integer getId() {
     return user_id;
   }
-  
+
   public String getUserame() {
     return username;
   }
@@ -34,7 +34,7 @@ public class User {
     return password;
   }
 
-  public void setPassword(String price) {
+  public void setPassword(String password) {
     this.password = password;
   }
 
