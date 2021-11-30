@@ -28,6 +28,10 @@
 
 - Gradle Version:
   ![gradle](https://user-images.githubusercontent.com/54514627/143801756-3f96c96e-e61d-469f-9227-0893fbbb2e76.PNG)
+  
+- Postman Tool for API testing (use `postman-collection.json`):
+  ![postman](https://user-images.githubusercontent.com/28630104/143964589-51baf82f-5872-4bf5-87f7-73b6fb4ff1af.png)
+
 
 ### Database and Middleware
 
