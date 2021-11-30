@@ -8,8 +8,6 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
 @Entity
-@Data
-@RequiredArgsConstructor
 public class Item {
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
@@ -36,6 +34,16 @@ public class Item {
   public void setName(String item_name) {
     this.item_name = item_name;
   }
+
+
+  public Integer getPrice() {
+    return price;
+  }
+
+  public void setPrice(Integer price) {
+    this.price = price;
+  }
+
 
   public Integer getStock() {
     return stock;

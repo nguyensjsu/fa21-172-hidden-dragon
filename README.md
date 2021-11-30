@@ -38,6 +38,7 @@
 - **MySQL**
   - MySQL 8.0 docker container deployed and connected with Spring project through SQL Java connector
   - Starter schema initialized with `bios-data.sql` and `bios-schema.sql`
+  - Required SQL Query functions setup through CRUDRepository
 - **Spring Web** - utilized to build out REST API mapping, so frontend can interact with database
 
 ### Credit Card Payment Support

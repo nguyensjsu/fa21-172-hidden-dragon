@@ -16,11 +16,23 @@ USE `cmpe172` ;
 DROP TABLE IF EXISTS `cmpe172`.`item` ;
 
 CREATE TABLE IF NOT EXISTS `cmpe172`.`item` (
-  `item_id` INT NOT NULL,
+  `item_id` INT NOT NULL AUTO_INCREMENT,
   `item_name` VARCHAR(20) NOT NULL,
   `price` DECIMAL(10,2) NULL,
   `stock` INT NULL,
   PRIMARY KEY (`item_id`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
+-- Table `cmpe172`.`person`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `cmpe172`.`user` ;
+
+CREATE TABLE IF NOT EXISTS `cmpe172`.`user` (
+  `user_id` INT NOT NULL AUTO_INCREMENT,
+  `username` VARCHAR(20) NOT NULL,
+  `password` VARCHAR(20) NULL,
+  PRIMARY KEY (`user_id`))
 ENGINE = InnoDB;
 
 SET SQL_MODE=@OLD_SQL_MODE;
