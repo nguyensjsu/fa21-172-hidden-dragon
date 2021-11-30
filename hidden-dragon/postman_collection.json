@@ -84,6 +84,37 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get Items",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/cart/find?id=1",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"cart",
+						"find"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1"
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
