@@ -1,7 +1,7 @@
 package com.example.hiddendragon;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-public interface DSRepository extends JpaRepository<DSCommand, Long>{
+public interface DSRepository extends CrudRepository<Cart, Integer>{
     
 }
