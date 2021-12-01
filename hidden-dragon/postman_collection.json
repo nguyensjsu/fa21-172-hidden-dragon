@@ -86,9 +86,9 @@
 			"response": []
 		},
 		{
-			"name": "Get Items",
+			"name": "Get Cart Items",
 			"request": {
-				"method": "POST",
+				"method": "GET",
 				"header": [],
 				"url": {
 					"raw": "http://{{host}}:{{port}}/cart/find?id=1",
@@ -104,12 +104,50 @@
 					"query": [
 						{
 							"key": "id",
-							"value": "1"
+							"value": "1",
+							"description": "Item ID"
 						},
 						{
 							"key": "",
 							"value": "",
 							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Cart Item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/cart/add?id=11&item_id=1&quantity=2",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"cart",
+						"add"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "11",
+							"description": "User ID"
+						},
+						{
+							"key": "item_id",
+							"value": "1",
+							"description": "Item ID"
+						},
+						{
+							"key": "quantity",
+							"value": "2",
+							"description": "Item Quantity"
 						}
 					]
 				}

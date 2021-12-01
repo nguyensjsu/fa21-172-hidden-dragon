@@ -15,4 +15,6 @@ public interface CartRepository extends CrudRepository<Cart, Integer> {
   @Query("SELECT i, ci FROM Cart c INNER JOIN CartItem ci ON c.cart_id = ci.cart_id INNER JOIN Item i ON ci.item_id = i.item_id WHERE c.user_id = ?1")
   List<Object[]> findItems(Integer user_id);
   
+  @Query("SELECT c FROM Cart c WHERE c.user_id = ?1")
+  Cart findTopCart(Integer user_id);
 }

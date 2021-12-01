@@ -36,6 +36,15 @@ public class CartItem {
     this.item_id = item_id;
   }
 
+
+  public Integer getQuantity() {
+    return quantity;
+  }
+
+  public void setQuantity(Integer quantity) {
+    this.quantity = quantity;
+  }
+
   public String toString() {
     return "CartID: " + cart_id + " / ItemID: " + item_id + " / Quantity: " + quantity;
   }
