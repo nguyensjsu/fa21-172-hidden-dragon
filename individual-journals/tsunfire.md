@@ -6,6 +6,8 @@
 
 **Accomplishments**
 
+- **[1.0.3]** Implement INNER JOIN for multiple tables through the use of IdClass and Composite keys to find user cart, items, item prices, and quantities given a userID.
+- **[1.0.4]** Added cart functionality with API routes and mapped carts to items and users using separate schemas.
 - **[1.0.2]** I added user schema to the database and seeded initial data. I setup API routes in the UserController for login and register functionality, which required querying. I also setup a Postman collection, so that group members could the test the API endpoints during their implementation. https://github.com/nguyensjsu/fa21-172-hidden-dragon/commit/d7d4b12873d2119a3f8cc8770f73f2ca2e549ac4
 - **[1.0.1]** I added MySQL connection to Spring application through CRUDRepository and Spring JPA. Add item schema and setup purchase API endpoint. https://github.com/nguyensjsu/fa21-172-hidden-dragon/commit/4b03738ef855526311cdcaafe2ae9e977199afb7
 
