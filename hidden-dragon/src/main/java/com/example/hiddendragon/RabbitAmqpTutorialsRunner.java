@@ -1,4 +1,4 @@
-package com.example.rabbitmq;
+package com.example.hiddendragon;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
