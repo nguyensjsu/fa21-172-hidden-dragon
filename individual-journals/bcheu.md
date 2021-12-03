@@ -15,3 +15,19 @@
 **Challenges**
 
 - None
+
+## Week 2
+
+**Snapshot**
+
+
+
+**Accomplishments**
+
+- I started working on the front end integration with the controllers in which the data will be sent to either the database or the cybersource API in order to register the user or allow the user to login and process their payments. 
+- Finished the registration for a new user with a successful send to the mySQL database
+-
+
+**Challenges**
+
+- Some challenges I faced was the overall integration of the front end forms to their parts in the controllers in which we had only been exposed to one form to one controller method as seen in the spring-payments series of labs. This faced a challenge in which led to many bugs and the code crashing upon running gradle bootRun and running the applicaiton locally. 
