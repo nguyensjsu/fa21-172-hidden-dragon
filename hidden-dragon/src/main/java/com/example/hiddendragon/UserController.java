@@ -99,7 +99,7 @@ public class UserController {
     if(u.isEmpty()){
       return "wrongUsePass";
     } else {
-      return "products";
+      return "item";
     }
   }
 
