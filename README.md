@@ -20,6 +20,11 @@
   ![spring](https://user-images.githubusercontent.com/54514627/143801689-0906eaaf-adeb-41d8-a4cd-0483feef9189.PNG)
 
 ### Front Office Portal
+-We designed and created a simple user interface in which the login,register, and checkout navigation is located in the navigation bar for the user to see easily in order to either create an account or to login to an existing one. 
+![home](https://user-images.githubusercontent.com/54514627/144555250-79cb0d90-9355-49aa-912f-2e1f084d2522.PNG)
+![login](https://user-images.githubusercontent.com/54514627/144555240-1df608b6-01ac-4452-a0f0-907d914292b5.PNG)
+![reg](https://user-images.githubusercontent.com/54514627/144555245-811d8e91-b6e9-47b4-a1dc-e7a31eb7ae63.PNG)
+
 
 ### Development Tools
 

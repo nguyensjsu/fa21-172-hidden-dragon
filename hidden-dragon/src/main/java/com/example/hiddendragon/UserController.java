@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMethod;
+
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.validation.Errors;
@@ -52,12 +54,11 @@ public class UserController {
           }
       }
   }
-  @PostMapping // Map ONLY POST Requests (path="/register")
-  public @ResponseBody String registerUser (@ModelAttribute("command") User user, Model model, @RequestParam(value="action", required=true) String
-  username, String password, String repeatPassword, HttpServletRequest request) {
+  @PostMapping ("/register")// Map ONLY POST Requests (path="/register")
+  public @ResponseBody String registerUser (@ModelAttribute User user, Model model) {
     // @ResponseBody means the returned String is the response, not a view name
     // @RequestParam means it is a parameter from the GET or POST request
-
+    model.addAttribute("user", user);
    
     ErrorMessages msgs = new ErrorMessages();
     //if(user.getPassword() == repeatPassword){
@@ -71,6 +72,8 @@ public class UserController {
       Cart c = new Cart();
       c.setUserId(n.getId());
       cartRepository.save(c);
+
+      model.addAttribute("isRegistered",true);
     //}
    // else{
       // msgs.add("The passwords do not match");
@@ -79,12 +82,26 @@ public class UserController {
 
    // }
     
-    return "drugstore";
+    return "registered";
     
   }
 
 
-  
+
+
+  @PostMapping(path="/login") // Map ONLY POST Requests
+  public @ResponseBody String loginUser (@ModelAttribute User user, Model model) {
+    // @ResponseBody means the returned String is the response, not a view name
+    // @RequestParam means it is a parameter from the GET or POST request
+    model.addAttribute("user", user);
+
+    Collection<User> u = userRepository.findUser(user.getUsername(), user.getPassword());
+    if(u.isEmpty()){
+      return "auth failed";
+    } else {
+      return "auth success for " + u.iterator().next().toString();
+    }
+  }
 
 
   // @GetMapping
@@ -94,7 +111,7 @@ public class UserController {
   // }
 
   @GetMapping
-      public String getAction( @ModelAttribute("command") User user, 
+      public String getAction( User user, 
       Model model) {
     
           return "drugStore";
