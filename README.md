@@ -20,11 +20,21 @@
   ![spring](https://user-images.githubusercontent.com/54514627/143801689-0906eaaf-adeb-41d8-a4cd-0483feef9189.PNG)
 
 ### Front Office Portal
--We designed and created a simple user interface in which the login,register, and checkout navigation is located in the navigation bar for the user to see easily in order to either create an account or to login to an existing one. 
-![home](https://user-images.githubusercontent.com/54514627/144555250-79cb0d90-9355-49aa-912f-2e1f084d2522.PNG)
-![login](https://user-images.githubusercontent.com/54514627/144555240-1df608b6-01ac-4452-a0f0-907d914292b5.PNG)
-![reg](https://user-images.githubusercontent.com/54514627/144555245-811d8e91-b6e9-47b4-a1dc-e7a31eb7ae63.PNG)
+-We designed and created a simple user interface in which the user will be walked though a process of either creating or logging in to an exisiting account in order to view the products this allows the user to avoid losing items in their cart without an account upon checking out.   
+-Upon loading the site the user will see this screen in which they will either login into their exisiting account or they will register for a new one
+![home](https://user-images.githubusercontent.com/54514627/144564583-1305c93c-adb8-4bb4-b687-958ccee7229d.PNG)
 
+-If the user needs to register a new account they will see the following screens:
+Registering form
+![reg](https://user-images.githubusercontent.com/54514627/144564823-aca3683f-1bdd-4753-8e8a-b6e209b3a0f3.PNG)
+After submitting to create the account
+![post_reg](https://user-images.githubusercontent.com/54514627/144564860-9b5c0180-3972-4ddf-9bb3-0f50c38487a1.PNG)
+
+-After registering the account the user will be prompted by the message to login to see the products:
+![login](https://user-images.githubusercontent.com/54514627/144564964-7df0e298-fb31-4c4e-bce7-a5c10fceb5cd.PNG)
+
+-After the user logs into their account they will then see the products
+![products](https://user-images.githubusercontent.com/54514627/144565035-4c32b747-895b-46e2-9767-87b63e93f60e.PNG)
 
 ### Development Tools
 
