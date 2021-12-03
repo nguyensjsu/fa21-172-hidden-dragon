@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 
+@Data
 @Entity
 public class User {
   @Id
@@ -21,7 +22,7 @@ public class User {
     return user_id;
   }
 
-  public String getUserame() {
+  String getUserame() {
     return username;
   }
 
