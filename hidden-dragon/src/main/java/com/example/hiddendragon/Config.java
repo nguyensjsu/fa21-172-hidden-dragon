@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
 
-@Profile({"hello","hello-world"})
+@Profile({"hiddendragon", "work-queues"})
 @Configuration
 public class Config {
 
@@ -15,9 +15,17 @@ public class Config {
     }
 
     @Profile("receiver")
-    @Bean
-    public Receiver receiver() {
-        return new Receiver();
+    private static class ReceiverConfig {
+
+        @Bean
+        public Receiver receiver1() {
+            return new Receiver(1);
+        }
+
+        @Bean
+        public Receiver receiver2() {
+            return new Receiver(2);
+        }
     }
 
     @Profile("sender")

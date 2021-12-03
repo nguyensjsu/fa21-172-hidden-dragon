@@ -1,3 +1,11 @@
+send: jar
+	java -jar build/libs/hidden-dragon-1.0.jar \
+	--spring.profiles.active=$(env),work-queues,sender
+
+receive: jar
+	java -jar build/libs/hidden-dragon-1.0.jar \
+	--spring.profiles.active=$(env),work-queues,receiver
+
 all: clean
 
 clean:
