@@ -121,6 +121,7 @@
             <div>
                 <h2 style = "text-align: center;">Welcome to the Mini Drug Store!</h2>
                 <p style = "text-align: center;">Please navigate through products, register a new account, or checkout with your order.</p>
+                
             </div>
             <body class="w3-content" style="max-width:3600px">
 
@@ -206,19 +207,22 @@
 
             <!-- Login Form -->
             <div class="form-popup" id="loginForm">
-            <form action="/action_page.php" class="form-container">
+            <form action="" class="form-container" th:object = "${login}" method = "GET">
                 <h1>Login</h1>
 
                 <label for="email"><b>Email</b></label>
-                <input type="text" placeholder="Enter Email" name="email" required>
+                <input type="text" placeholder="Enter Email" name="email" required th:field = "*{username}">
 
                 <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required>
+                <input type="password" placeholder="Enter Password" name="psw" required th:field = "*{password}">
 
-                <button type="submit" class="btn">Login</button>
+                <!-- <button type="submit" class="btn">Login</button> -->
+                <input type="submit" name="action" id="login" value="Login" class="btn">
                 <button type="button" class="btn cancel" onclick="closeLoginForm()">Close</button>
+                
             </form>
             </div>
+
             <!-- Register Form -->
             <div class="form-popup" id="regForm">
                 <form action="" th:object = "${command}" class="form-container" method = "POST" >

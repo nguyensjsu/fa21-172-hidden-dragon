@@ -16,7 +16,12 @@ import lombok.Setter;
 import org.springframework.validation.Errors;
 import java.util.*;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
+import lombok.extern.slf4j.Slf4j;
+
+
+@Slf4j
 @Controller // This means that this class is a Controller
 @RequestMapping(path="/") // This means URL's start with /demo (after Application path)
 public class UserController {
@@ -79,19 +84,8 @@ public class UserController {
   }
 
 
-  @PostMapping(path="/login") // Map ONLY POST Requests
-  public @ResponseBody String loginUser (@RequestParam String username
-      , @RequestParam String password) {
-    // @ResponseBody means the returned String is the response, not a view name
-    // @RequestParam means it is a parameter from the GET or POST request
+  
 
-    Collection<User> u = userRepository.findUser(username, password);
-    if(u.isEmpty()){
-      return "auth failed";
-    } else {
-      return "auth success for " + u.iterator().next().toString();
-    }
-  }
 
   // @GetMapping
   // public @ResponseBody Iterable<User> getAllUsers() {
@@ -106,4 +100,17 @@ public class UserController {
           return "drugStore";
   
       }
+      public @ResponseBody String loginUser (@Valid @ModelAttribute("login") User user, Model model,@RequestParam(value="action", required=true) String username
+      , @RequestParam String password, HttpServletRequest request) {
+    // @ResponseBody means the returned String is the response, not a view name
+    // @RequestParam means it is a parameter from the GET or POST request
+
+    Collection<User> u = userRepository.findUser(username, password);
+    if(u.isEmpty()){
+      return "auth failed";
+     
+    } else {
+      return "auth success for " + u.iterator().next().toString();
+    }
+  }
 }
