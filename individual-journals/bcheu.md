@@ -19,6 +19,12 @@
 ## Week 2
 
 **Snapshot**
+![home](https://user-images.githubusercontent.com/54514627/144565478-2eae3b98-d189-40c3-9c39-1d055ec3d250.PNG)
+![login](https://user-images.githubusercontent.com/54514627/144565481-70e12346-b93f-4c17-9fe9-5018e36b5f5d.PNG)
+![reg](https://user-images.githubusercontent.com/54514627/144565488-47a7806d-5bf8-4c4f-a85a-f4de82df67f5.PNG)
+![post_reg](https://user-images.githubusercontent.com/54514627/144565484-c842d847-599b-403f-81ca-a6abcc2ffea1.PNG)
+![products](https://user-images.githubusercontent.com/54514627/144565486-fe029bb6-689c-493d-bfbd-5a83821953e9.PNG)
+
 
 
 
@@ -26,8 +32,9 @@
 
 - I started working on the front end integration with the controllers in which the data will be sent to either the database or the cybersource API in order to register the user or allow the user to login and process their payments. 
 - Finished the registration for a new user with a successful send to the mySQL database
--
+- Redesigned the front end to guide the user through registering and logging into their account to see the products to aviod confusion
+- 
 
 **Challenges**
 
-- Some challenges I faced was the overall integration of the front end forms to their parts in the controllers in which we had only been exposed to one form to one controller method as seen in the spring-payments series of labs. This faced a challenge in which led to many bugs and the code crashing upon running gradle bootRun and running the applicaiton locally. 
+- Some challenges I faced was the overall integration of the front end forms to their parts in the controllers in which we had only been exposed to one form to one controller method as seen in the spring-payments series of labs. This faced a challenge in which led to many bugs and the code crashing upon running gradle bootRun and running the applicaiton locally. This was solved with the help of my teammate Alan. I then was able to create a series of templates to helpguide the user through the registration and login process in order to see the products. 
