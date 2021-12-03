@@ -55,7 +55,7 @@ public class UserController {
       }
   }
   @PostMapping ("/register")// Map ONLY POST Requests (path="/register")
-  public @ResponseBody String registerUser (@ModelAttribute User user, Model model) {
+  public String registerUser (@ModelAttribute User user, Model model) {
     // @ResponseBody means the returned String is the response, not a view name
     // @RequestParam means it is a parameter from the GET or POST request
     model.addAttribute("user", user);
@@ -82,7 +82,7 @@ public class UserController {
 
    // }
     
-    return "registered";
+    return "after_reg";
     
   }
 
@@ -90,16 +90,16 @@ public class UserController {
 
 
   @PostMapping(path="/login") // Map ONLY POST Requests
-  public @ResponseBody String loginUser (@ModelAttribute User user, Model model) {
+  public  String loginUser (@ModelAttribute User user, Model model) {
     // @ResponseBody means the returned String is the response, not a view name
     // @RequestParam means it is a parameter from the GET or POST request
     model.addAttribute("user", user);
 
     Collection<User> u = userRepository.findUser(user.getUsername(), user.getPassword());
     if(u.isEmpty()){
-      return "auth failed";
+      return "wrongUsePass";
     } else {
-      return "auth success for " + u.iterator().next().toString();
+      return "products";
     }
   }
 
@@ -110,7 +110,7 @@ public class UserController {
   //   return userRepository.findAll();
   // }
 
-  @GetMapping
+  @GetMapping(path = "/")
       public String getAction( User user, 
       Model model) {
     
@@ -130,4 +130,6 @@ public class UserController {
       return "auth success for " + u.iterator().next().toString();
     }
   }
+
+  
 }

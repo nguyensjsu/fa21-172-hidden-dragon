@@ -115,12 +115,12 @@
             <div class="topnav" >
                 <a href="#home">Home</a>
                 <a onclick="openLoginForm(); closeRegisterForm()">Login</a>
-                <a onclick="openRegisterForm(); closeLoginForm()">Register</a>
+                <!-- <a onclick="openRegisterForm(); closeLoginForm()">Register</a> -->
                 <!-- <a href="#checkout">Checkout</a> -->
             </div>
             <div>
                 <h2 style = "text-align: center;">Welcome to the Mini Drug Store!</h2>
-                <p style = "text-align: center;">Please register a new account or login to view the products.</p>
+                <p style = "text-align: center;">Successful creation of new account please log in to view products.</p>
                 
             </div>
             <body class="w3-content" style="max-width:3600px">
@@ -223,40 +223,16 @@
             </form>
             </div>
 
-            <!-- Register Form -->
-            <div class="form-popup" id="regForm">
-                <form action="#" th:action="@{/register}" th:object="${user}" class="form-container" method = "POST" >
-                    <h1>Register</h1>
-    
-                    <p th:if="${isRegistered}">Registered</p>
-                    <label for="email"><b>Username</b></label>
-                    <input type="text" placeholder="Enter Username" name="username" required th:field = "*{username}">
-    
-                    <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" required th:field = "*{password}">
-
-                    <label for="psw"><b>Repeat Password</b></label>
-                    <input type="password" placeholder="Enter Repeat Password" name="psw" required>
-    
-                    <!-- <button type="submit" onclick = "closeRegisterForm()" class="btn">Register</button> -->
-                    <input type="submit" name="action" id="register" value="Register" class="btn">
-                    <button type="button" class="btn cancel" onclick="closeRegisterForm()">Close</button>
-                </form>
-                </div>
-
+           
             <script>
             function openLoginForm() {
             document.getElementById("loginForm").style.display = "block";
             }
-            function openRegisterForm() {
-            document.getElementById("regForm").style.display = "block";
-            }
+           
             function closeLoginForm() {
             document.getElementById("loginForm").style.display = "none";
             }
-            function closeRegisterForm() {
-            document.getElementById("regForm").style.display = "none";
-            }
+           
             </script>
      
         
