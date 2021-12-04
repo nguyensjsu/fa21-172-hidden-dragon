@@ -3,6 +3,7 @@
 ## Week 2
 
 **Snapshot**
+![img](https://user-images.githubusercontent.com/28630104/144704295-673b30a0-38c0-41be-bf45-4562b348e82c.png)
 
 **Accomplishments**
 
