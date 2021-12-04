@@ -7,7 +7,7 @@
 
 **Accomplishments**
 
-- **[1.0.5]** I converted the entire API to a RESTful API (Cart, Items, Users) with exception handling, model assembly, link creation, responseentity returns. Also modified code styling inconsistencies and syntax to match Java standards.
+- **[1.0.5]** I converted the entire API to a RESTful API (Cart, Items, Users) with exception handling, model assembly, link creation, responseentity returns. Also modified code styling inconsistencies and syntax to match Java standards. I am also constantly adding and updating Postman collection, so that team members can test API.
 - **[1.0.4]** Figured out how to pass data in from frontend to backend through thymeleaf actions and ModelAttributes. 
 - **[1.0.3]** Implement INNER JOIN for multiple tables through the use of IdClass and Composite keys to find user cart, items, item prices, and quantities given a userID.
 - **[1.0.4]** Added cart functionality with API routes and mapped carts to items and users using separate schemas.
