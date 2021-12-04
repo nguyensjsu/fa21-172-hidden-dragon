@@ -11,24 +11,24 @@ import lombok.RequiredArgsConstructor;
 public class Cart {
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
-  private Integer cart_id;
+  private Integer cartId;
 
-  private Integer user_id;
+  private Integer userId;
 
   public Integer getId() {
-    return cart_id;
+    return cartId;
   }
 
-  public void setId(Integer cart_id) {
-    this.cart_id = cart_id;
+  public void setId(Integer cartId) {
+    this.cartId = cartId;
   }
 
   public Integer getUserId() {
-    return user_id;
+    return userId;
   }
 
-  public void setUserId(Integer user_id) {
-    this.user_id = user_id;
+  public void setUserId(Integer userId) {
+    this.userId = userId;
   }
   
 }

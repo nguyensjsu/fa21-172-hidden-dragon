@@ -11,15 +11,25 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://{{host}}:{{port}}/user/login",
+					"raw": "http://{{host}}:{{port}}/users/register?username=bobby&password=pipins",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
 					],
 					"port": "{{port}}",
 					"path": [
-						"user",
-						"login"
+						"users",
+						"register"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "bobby"
+						},
+						{
+							"key": "password",
+							"value": "pipins"
+						}
 					]
 				}
 			},
@@ -49,36 +59,6 @@
 						{
 							"key": "password",
 							"value": "testerok"
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Purchase Item",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "http://{{host}}:{{port}}/item/purchase?id=1&quantity=1",
-					"protocol": "http",
-					"host": [
-						"{{host}}"
-					],
-					"port": "{{port}}",
-					"path": [
-						"item",
-						"purchase"
-					],
-					"query": [
-						{
-							"key": "id",
-							"value": "1"
-						},
-						{
-							"key": "quantity",
-							"value": "1"
 						}
 					]
 				}
@@ -151,6 +131,44 @@
 						}
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Items",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "Purchase Item",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/items/1",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"items",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cart",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
 			},
 			"response": []
 		}

@@ -13,27 +13,27 @@ import lombok.RequiredArgsConstructor;
 @IdClass(CartItemKey.class)
 public class CartItem {
   @Id
-  private Integer cart_id;
+  private Integer cartId;
 
   @Id
-  private Integer item_id;
+  private Integer itemId;
 
   private Integer quantity;
 
   public Integer getId() {
-    return cart_id;
+    return cartId;
   }
 
-  public void setId(Integer cart_id) {
-    this.cart_id = cart_id;
+  public void setId(Integer cartId) {
+    this.cartId = cartId;
   }
 
   public Integer getItemId() {
-    return item_id;
+    return itemId;
   }
 
-  public void setItemId(Integer item_id) {
-    this.item_id = item_id;
+  public void setItemId(Integer itemId) {
+    this.itemId = itemId;
   }
 
 
@@ -46,13 +46,13 @@ public class CartItem {
   }
 
   public String toString() {
-    return "CartID: " + cart_id + " / ItemID: " + item_id + " / Quantity: " + quantity;
+    return "CartID: " + cartId + " / ItemID: " + itemId + " / Quantity: " + quantity;
   }
   
 }
 
 class CartItemKey implements Serializable {
-  private Integer cart_id;
-  private Integer item_id;
+  private Integer cartId;
+  private Integer itemId;
 }
   
