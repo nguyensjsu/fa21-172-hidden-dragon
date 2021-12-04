@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @RestController // This means that this class is a Controller
-@RequestMapping(path="/users") // This means URL's start with /demo (after Application path)
+@RequestMapping(path="/") // This means URL's start with /demo (after Application path)
 public class UserController {
 
   private final UserRepository userRepository;
@@ -65,14 +65,16 @@ public class UserController {
       }
   }
 
-  @GetMapping("/")
+  @GetMapping("/users")
   CollectionModel<EntityModel<User>> allUsers() {
   
     List<EntityModel<User>> users = userRepository.findAll().stream() //
         .map(assembler::toModel) //
         .collect(Collectors.toList());
-  
+
+ 
     return CollectionModel.of(users, linkTo(methodOn(UserController.class).allUsers()).withSelfRel());
+    
   }
 
   @GetMapping("/{id}")
@@ -83,6 +85,13 @@ public class UserController {
   
     return assembler.toModel(user);
   }
+
+ @GetMapping
+   public String home(@ModelAttribute("user") User user, Model model){
+     return "drugstore";
+   }
+ 
+ 
 
   @PostMapping ("/register")// Map ONLY POST Requests (path="/register")
   ResponseEntity<EntityModel<User>> newUser (@ModelAttribute User user, Model model) {
