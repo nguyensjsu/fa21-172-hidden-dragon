@@ -66,7 +66,7 @@
 			"response": []
 		},
 		{
-			"name": "Get Cart Items",
+			"name": "Get Cart Total",
 			"request": {
 				"method": "GET",
 				"header": [],
@@ -91,6 +91,68 @@
 							"key": "",
 							"value": "",
 							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Clear Cart",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/carts/clear?id=1",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"carts",
+						"clear"
+					],
+					"query": [
+						{
+							"key": "id",
+							"value": "1",
+							"description": "Item ID"
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cart Items",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://{{host}}:{{port}}/carts?userId=1",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"carts"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "userId",
+							"value": "1"
 						}
 					]
 				}
@@ -171,6 +233,15 @@
 						""
 					]
 				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
 			},
 			"response": []
 		}

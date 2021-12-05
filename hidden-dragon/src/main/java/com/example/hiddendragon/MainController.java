@@ -130,6 +130,7 @@ public class MainController {
     try {
       ArrayList<CartItem> items = new ArrayList<CartItem>();
       ResponseEntity<ArrayList> response = restTemplate.getForEntity(CARTS_URI, ArrayList.class, id);
+      ResponseEntity<Integer> response = restTemplate.getForEntity(CARTS_URI + "/total?=" + id, ArrayList.class, id);
       ObjectMapper mapper = new ObjectMapper();
 
       for(Object item: response.getBody()){
@@ -139,6 +140,9 @@ public class MainController {
         items.add(cartItem);
         System.out.println(cartItem);
       }
+
+      model.addAttribute("items", items);
+      model.addAttribute("total", total);
 
       return "checkout";
     } catch(Exception e)  {
