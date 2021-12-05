@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.*;
-
+import java.sql.SQLException;
 import org.springframework.web.bind.annotation.*;
 
 import org.springframework.http.ResponseEntity;
@@ -87,22 +87,25 @@ public class UserController {
 
   @PostMapping ("/register")// Map ONLY POST Requests (path="/register")
   ResponseEntity<User> newUser (@ModelAttribute User user, Model model) {
-    // @ResponseBody means the returned String is the response, not a view name
-    // @RequestParam means it is a parameter from the GET or POST request
-    model.addAttribute("user", user);
+      model.addAttribute("user", user);
    
-    HttpHeaders responseHeaders = new HttpHeaders();
-    //if(user.getPassword() == repeatPassword){
+      HttpHeaders responseHeaders = new HttpHeaders();
+      //if(user.getPassword() == repeatPassword){
+      try {
+        User newUser = userRepository.saveAndFlush(user);
+
+        Cart c = new Cart();
+        c.setUserId(newUser.getId());
+        cartRepository.save(c);
+
+        model.addAttribute("isRegistered",true);
+
+        responseHeaders.set("status", HttpStatus.OK + "");
+
+      } catch(Exception e){
+        responseHeaders.set("status", HttpStatus.CONFLICT + "");
+      }
       
-      User newUser = userRepository.save(user);
-  
-      Cart c = new Cart();
-      c.setUserId(newUser.getId());
-      cartRepository.save(c);
-
-      model.addAttribute("isRegistered",true);
-
-      responseHeaders.set("status", HttpStatus.OK + "");
 
       return new ResponseEntity(responseHeaders, HttpStatus.OK);
 
@@ -132,7 +135,12 @@ public class UserController {
     // } else {
     //   return "item";
     // }
-    responseHeaders.set("status", HttpStatus.OK + "");
+    if(newUser != null){
+      responseHeaders.set("status", HttpStatus.OK + "");
+    } else {
+      responseHeaders.set("status", HttpStatus.UNAUTHORIZED + "");
+    }
+   
 
     return new ResponseEntity(responseHeaders, HttpStatus.OK);
   

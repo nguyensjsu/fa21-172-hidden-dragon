@@ -30,7 +30,7 @@ DROP TABLE IF EXISTS `cmpe172`.`user` ;
 
 CREATE TABLE IF NOT EXISTS `cmpe172`.`user` (
   `user_id` INT NOT NULL AUTO_INCREMENT,
-  `username` VARCHAR(20) NOT NULL,
+  `username` VARCHAR(20) NOT NULL UNIQUE,
   `password` VARCHAR(20) NULL,
   PRIMARY KEY (`user_id`))
 ENGINE = InnoDB;

@@ -60,9 +60,12 @@ public String login(@ModelAttribute User user ){
 
   ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/login?username=" + user.getUserame() + "&password=" + user.getPassword(), user, User.class);
 
-  System.out.println(response.getHeaders().getFirst("status"));
+  if(response.getHeaders().getFirst("status").equals(HttpStatus.OK + "")){
+    return "drugstore";
+  } else {
+    return ""; // error page (wrong password or account not found)
+  }
 
-  return "drugstore";
 }
 
 @PostMapping("/register")
@@ -74,7 +77,12 @@ public String register(@ModelAttribute User user ){
 
   System.out.println(response.getHeaders().getFirst("status"));
 
-  return "drugstore";
+  if(response.getHeaders().getFirst("status").equals(HttpStatus.OK + "")){
+    return "drugstore";
+  } else {
+    return ""; // error page (duplicate signup)
+  }
+
 }
 
 
