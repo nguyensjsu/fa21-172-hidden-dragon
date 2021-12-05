@@ -62,9 +62,9 @@ public class MainController {
     ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/login?username=" + user.getUsername() + "&password=" + user.getPassword(), user, User.class);
 
     if(response.getStatusCode() == HttpStatus.OK){
-      return "drugstore";
+      return "after_reg";
     } else {
-      return ""; // error page (wrong password or account not found)
+      return "wrongUsePass"; // error page (wrong password or account not found)
     }
 
   }
@@ -79,9 +79,9 @@ public class MainController {
     System.out.println(response.getStatusCode());
 
     if(response.getStatusCode().equals(HttpStatus.OK)){
-      return "drugstore";
+      return "after_reg";
     } else {
-      return ""; // error page (duplicate signup)
+      return "wrongUsePass"; // error page (duplicate signup)
     }
 
   }
@@ -92,9 +92,9 @@ public class MainController {
     ResponseEntity<CartItem> response = restTemplate.getForEntity(CARTS_URI, CartItem.class);
 
     if(response.getStatusCode().equals(HttpStatus.OK)){
-      return "drugstore";
+      return "after_reg";
     } else {
-      return ""; // error page (duplicate signup)
+      return "wrongUsePass"; // error page (duplicate signup)
     }
 
   }

@@ -58,8 +58,36 @@ public class CartController {
     return new ResponseEntity(items, HttpStatus.OK);
     
   }
-  
 
+  @GetMapping("/total")
+  ResponseEntity<String> totalCartAction(@RequestParam("userId") Integer id, Model model) {
+    Cart cart = cartRepository.findByUserId(id);
+    
+    ArrayList<CartItem> items = cartItemRepository.findByCart(cart);
+    Integer total = 0;
+    for(CartItem i : items){
+      total += (i.getQuantity() * i.getItem().getPrice());
+    }
+
+    
+    return new ResponseEntity("$" + total, HttpStatus.OK);
+    
+  }
+
+  @GetMapping("/clear")
+  ResponseEntity<String> clearCartAction(@RequestParam("userId") Integer id, Model model) {
+    Cart cart = cartRepository.findByUserId(id);
+    
+    ArrayList<CartItem> items = cartItemRepository.findByCart(cart);
+    
+    for(CartItem i: items){
+      cartItemRepository.deleteById(i.getId());
+    }
+    
+    return new ResponseEntity("items cleared", HttpStatus.OK);
+    
+  }
+  
   @PostMapping("/add")
   ResponseEntity<Cart> addItem(@RequestParam("userId") Integer id, @RequestParam("quantity") Integer quantity, @ModelAttribute Item item, Model model) {
     Cart cart = cartRepository.findByUserId(id);
