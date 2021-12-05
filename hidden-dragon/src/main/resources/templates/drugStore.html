@@ -246,18 +246,18 @@
                 </div>
                     <!-- Reset Password Form -->
                     <div class="form-popup" id="resetForm">
-                        <form action="#" class="form-container" method = "POST" >
+                        <form action="#" th:action="@{/reset}" class="form-container" method = "POST" >
                             <!-- th:action="@{/login}" th:object="${user}" -->
                         <h1>Reset Password</h1>
 
                         <label for="email"><b>Username</b></label>
-                        <input type="text" placeholder="Enter Username" name="username" required >
+                        <input type="text" placeholder="Enter Username" name="username" th:name = "username" required >
                         <!-- th:field = "*{username}" -->
                         <label for="psw"><b>Old Password</b></label>
-                        <input type="password" placeholder="Enter Old Password" name="psw" required >
+                        <input type="password" placeholder="Enter Old Password" name="psw" th:name = "existingPassword" required >
                         <!-- th:field = "*{password}" -->
                         <label for="psw"><b>New Password</b></label>
-                        <input type="password" placeholder="Enter New Password" name="psw" required >
+                        <input type="password" placeholder="Enter New Password" name="psw" th:name = "newPassword" required >
                         <!-- <button type="submit" class="btn">Login</button> -->
                         <input type="submit" name="action" id="reset" value="Reset Password" class="btn">
                         <button type="button" class="btn cancel" onclick="closeresetForm()">Close</button>

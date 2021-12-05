@@ -107,7 +107,7 @@ public class UserController {
 
   @PostMapping ("/reset")// Map ONLY POST Requests (path="/register")
   ResponseEntity<User> resetPassword (@RequestParam("username") String username, @RequestParam("newPassword") String newPassword, @RequestParam("existingPassword") String existingPassword) {
-    User user = userRepository.findByUsernameAndPassword(username, existingPassword);
+      User user = userRepository.findByUsernameAndPassword(username, existingPassword);
 
      
        try {

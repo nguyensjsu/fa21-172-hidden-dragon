@@ -86,6 +86,20 @@ public class MainController {
     
   }
 
+  @PostMapping("/reset")
+  public String reset(@RequestParam("username") String username, @RequestParam("existingPassword") String existingPassword, @RequestParam("newPassword") String newPassword ){
+    System.out.println("Resetting password for" + username + " " + existingPassword + " new password: " + newPassword);
+    try {
+      ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/reset?username=" + username + "&existingPassword=" + existingPassword + "&newPassword=" + newPassword, new User(), User.class);
+      
+      return "after_reg";
+    } catch(Exception e) {
+      return "error";
+    }
+    
+  }
+  
+
   @GetMapping("/store")
   public String getStore(Model model){
     System.out.println("Accessing page store");
