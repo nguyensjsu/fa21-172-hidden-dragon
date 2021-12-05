@@ -46,6 +46,7 @@ public class MainController {
     //run on docker
     private String USERS_URI = "http://localhost:8080/users";
     private String CARTS_URI = "http://localhost:8080/carts";
+    private String ITEM_URI = "http://localhost:8080/ites";
 
   @GetMapping
   public String home(@ModelAttribute User user, Model model) {
@@ -59,12 +60,13 @@ public class MainController {
     log.info("User " + user.getUsername() + " attemped login");
     System.out.println(user.getUsername() + " / " + user.getPassword());
 
-    ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/login?username=" + user.getUsername() + "&password=" + user.getPassword(), user, User.class);
+    
+    try {
+      ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/login?username=" + user.getUsername() + "&password=" + user.getPassword(), user, User.class);
 
-    if(response.getStatusCode() == HttpStatus.OK){
-      return "checkout";
-    } else {
-      return "wrongUsePass"; // error page (wrong password or account not found)
+      return "item";
+    } catch(Exception e) {
+      return "wrongUsePass"; 
     }
 
   }
@@ -74,28 +76,28 @@ public class MainController {
     log.info("User " + user.getUsername() + " / " + user.getPassword() + " attemped register");
     System.out.println(user.getUsername() + " / " + user.getPassword());
 
-    ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/register?username=" + user.getUsername() + "&password=" + user.getPassword(), user, User.class);
-
-    System.out.println(response.getStatusCode());
-
-    if(response.getStatusCode().equals(HttpStatus.OK)){
+    try {
+      ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/register?username=" + user.getUsername() + "&password=" + user.getPassword(), user, User.class);
+      
       return "after_reg";
-    } else {
-      return "wrongUsePass"; // error page (duplicate signup)
+    } catch(Exception e) {
+      return "wrongDupAcc";
     }
+    
+  }
+
+  @GetMapping("/store")
+  public String getStore(){
+    return "item";
 
   }
 
-  @PostMapping("/cart")
-  public String getCart(){
+  @GetMapping("/cart")
+  public String getCart(@RequestParam(value="userId") Integer id, Model model ){
+    ResponseEntity<CartItem> response = restTemplate.getForEntity(CARTS_URI, CartItem.class, id);
+    System.out.println("User " + id + "accessing cart");
 
-    ResponseEntity<CartItem> response = restTemplate.getForEntity(CARTS_URI, CartItem.class);
-
-    if(response.getStatusCode().equals(HttpStatus.OK)){
-      return "after_reg";
-    } else {
-      return "wrongUsePass"; // error page (duplicate signup)
-    }
+    return "checkout";
 
   }
 

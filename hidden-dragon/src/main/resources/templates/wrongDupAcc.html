@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" 
+      xmlns:th="http://www.thymeleaf.org">
+
+<html>
+    <head>
+        <title>Mini Drug Store</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+        <!-- <link rel="stylesheet" th:href="@{/styles.css}" /> -->
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <style>
+            body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            }
+
+            .topnav {
+            overflow: hidden;
+            background-color: #333;
+            }
+
+            .topnav a {
+            float: left;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 17px;
+            }
+
+            .topnav a:hover {
+            background-color: #ddd;
+            color: black;
+            }
+
+            .topnav a.active {
+            background-color: #04AA6D;
+            color: white;
+            }
+            .w3-sidebar a {font-family: "Roboto", sans-serif}
+            body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+            .open-button {
+            background-color: #555;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            opacity: 0.8;
+            position: fixed;
+            bottom: 23px;
+            right: 28px;
+            width: 280px;
+            }
+
+            /* The popup form - hidden by default */
+            .form-popup {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            right: 15px;
+            border: 3px solid #f1f1f1;
+            z-index: 9;
+            }
+
+            /* Add styles to the form container */
+            .form-container {
+            max-width: 300px;
+            padding: 10px;
+            background-color: white;
+            }
+
+            /* Full-width input fields */
+            .form-container input[type=text], .form-container input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            border: none;
+            background: #f1f1f1;
+            }
+
+            /* When the inputs get focus, do something */
+            .form-container input[type=text]:focus, .form-container input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+            }
+
+            /* Set a style for the submit/login button */
+            .form-container .btn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom:10px;
+            opacity: 0.8;
+            }
+
+            /* Add a red background color to the cancel button */
+            .form-container .cancel {
+            background-color: red;
+            }
+
+            /* Add some hover effects to buttons */
+            .form-container .btn:hover, .open-button:hover {
+            opacity: 1;
+            }
+    </style>
+    </head>
+            <div class="topnav" >
+                <a href="#home">Home</a>
+                <a onclick="openLoginForm(); closeRegisterForm()">Login</a>
+                <a onclick="openRegisterForm(); closeLoginForm()">Register</a>
+                <!-- <a href="#checkout">Checkout</a> -->
+            </div>
+            <div>
+                <h2 style = "text-align: center;">Welcome to the Mini Drug Store!</h2>
+                <p style = "text-align: center;">Looks like the username is already in use, please try a different one.</p>
+                
+            </div>
+            <body class="w3-content" style="max-width:3600px">
+
+        <!-- Sidebar/menu -->
+        <!-- <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
+          <div class="w3-container w3-display-container w3-padding-16">
+            <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+            <h3 class="w3-wide"><b>PRODUCTS</b></h3>
+          </div>
+          <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
+            <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
+              Products </i>
+            </a>
+            
+          </div>
+        
+        </nav>
+         -->
+        <!-- Top menu on small screens -->
+        <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
+          <div class="w3-bar-item w3-padding-24 w3-wide">LOGO</div>
+          <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+        </header>
+        
+        <!-- Overlay effect when opening sidebar on small screens -->
+        <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+        
+        <!-- !PAGE CONTENT! -->
+        <div class="w3-main" style="margin-left:250px">
+        
+          <!-- Push down content on small screens -->
+          <div class="w3-hide-large" style="margin-top:83px"></div>
+          
+          <!-- Top header -->
+          <!-- <header class="w3-container w3-xlarge">
+            <p class="w3-right">
+              <i class="fa fa-shopping-cart w3-margin-right"></i>
+              <i class="fa fa-search"></i>
+            </p>
+          </header> -->
+        
+          <!-- Image header -->
+          <!-- <div class="w3-display-container w3-container">
+            <img src="../static/images/Capture.PNG" alt="logo" th:src = "@{images/Capture.png}" style="width: 30%;">
+        
+          </div>
+        
+          <div class="w3-container w3-text-grey" id="jeans">
+            <p>4 items</p>
+          </div>
+         -->
+          <!-- Product grid -->
+          <!-- <div class="w3-row ">
+            <div class="w3-col l3 s6">
+              <div class="w3-container">
+                <img src="../static/images/advil.png" th:src = "@{images/advil.png}" style="width:50%">
+                <p>Advil<br><b>$3.50</b></p>
+                
+                <input type="submit" name="action" id="process-payment" value="Add to Cart" class="btn">
+              </div>
+              <br>
+        
+            <div class="w3-container">
+                <img src="../static/images/Bandaid.jpg" th:src = "@{images/Bandaid.jpg}" style="width:50%">
+                <p>BandAid<br><b>$2.00</b></p>
+                <input type="submit" name="action" id="process-payment" value="Add to Cart" class="btn">
+            </div>
+            <br>
+            <div class="w3-container">
+                <img src="../static/images/neo.jpg" th:src = "@{images/neo.jpg}" style="width:50%">
+                <p>Neosporin<br><b>$4.00</b></p>
+                <input type="submit" name="action" id="process-payment" value="Add to Cart" class="btn">
+            </div>\
+            <br>
+            <div class="w3-container">
+              <img src="../static/images/mask.jpg" th:src = "@{images/mask.jpg}" style="width:50%">
+              <p>Mask<br><b>$1.00</b></p>
+              <input type="submit" name="action" id="process-payment" value="Add to Cart" class="btn">
+          </div>
+          <br>
+            </div> -->
+            
+
+            <!-- Login Form -->
+            <div class="form-popup" id="loginForm">
+              <form action="#" th:action="@{/login}" th:object="${user}" class="form-container" method = "POST" >
+                <h1>Login</h1>
+
+                <label for="email"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="username" required th:field = "*{username}">
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required th:field = "*{password}">
+
+                <!-- <button type="submit" class="btn">Login</button> -->
+                <input type="submit" name="action" id="login" value="Login" class="btn">
+                <button type="button" class="btn cancel" onclick="closeLoginForm()">Close</button>
+                
+            </form>
+            </div>
+
+            <!-- Register Form -->
+            <div class="form-popup" id="regForm">
+                <form action="#" th:action="@{/register}" th:object="${user}" class="form-container" method = "POST" >
+                    <h1>Register</h1>
+    
+                    <p th:if="${isRegistered}">Registered</p>
+                    <label for="email"><b>Username</b></label>
+                    <input type="text" placeholder="Enter Username" name="username" required th:field = "*{username}">
+    
+                    <label for="psw"><b>Password</b></label>
+                    <input type="password" placeholder="Enter Password" name="psw" required th:field = "*{password}">
+
+                    <label for="psw"><b>Repeat Password</b></label>
+                    <input type="password" placeholder="Enter Repeat Password" name="psw" required>
+    
+                    <!-- <button type="submit" onclick = "closeRegisterForm()" class="btn">Register</button> -->
+                    <input type="submit" name="action" id="register" value="Register" class="btn">
+                    <button type="button" class="btn cancel" onclick="closeRegisterForm()">Close</button>
+                </form>
+                </div>
+
+            <script>
+            function openLoginForm() {
+            document.getElementById("loginForm").style.display = "block";
+            }
+            function openRegisterForm() {
+            document.getElementById("regForm").style.display = "block";
+            }
+            function closeLoginForm() {
+            document.getElementById("loginForm").style.display = "none";
+            }
+            function closeRegisterForm() {
+            document.getElementById("regForm").style.display = "none";
+            }
+            </script>
+     
+        
+        </body>
+</html>
+    

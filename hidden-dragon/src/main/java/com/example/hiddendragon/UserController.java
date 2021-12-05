@@ -100,7 +100,7 @@ public class UserController {
       return new ResponseEntity(user, HttpStatus.OK);  
     } else {
       System.out.println("Wrong password or nonexistent user");
-      return new ResponseEntity(null, HttpStatus.UNAUTHORIZED);
+      return new ResponseEntity(user, HttpStatus.UNAUTHORIZED);
     }
    
 
