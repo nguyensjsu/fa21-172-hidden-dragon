@@ -23,6 +23,7 @@ class DSCommand {
     private String email;
     private String city;
     private String cardnum;
+    private String cardexpmon;
     private String cardexpyear;
     private String cardcvv;
     private String address;
@@ -57,4 +58,17 @@ class DSCommand {
     public String toString() {
       return "Username: " + username + " / Password: " + password;
     }
+    String firstname(){return firstname;}
+    String lastname(){return lastname;}
+    String address(){return address;}
+    String city(){return city;}
+    String state(){return state;}
+    String zip(){return zip;}
+    String phone(){return phone;}
+    String cardnum(){return cardnum;}
+    String cardexpmon(){return cardexpmon;}
+    String cardexpyear(){return cardexpyear;}
+    String cardcvv(){return cardcvv;}
+    String email(){return email;}
+    String notes(){return notes;}
 }

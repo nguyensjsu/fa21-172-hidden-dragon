@@ -140,7 +140,7 @@
           <div class="w3-hide-large" style="margin-top:83px"></div>
           
         <!-- FORM SECTION -->
-<form name="form" th:object="${command}" method="post" action="">
+<form name="form" th:object="${checkout}" method="post" action="">
 
     <table style="width:100%">
         <tr>
@@ -154,12 +154,18 @@
                       <b>4</b>
                     </span>
                   </h4>
-                  <p><a href="#">Mask</a> <span class="price">$1</span></p>
+                  <!-- <p><a href="#">Mask</a> <span class="price">$1</span></p>
                   <p><a href="#">Advil</a> <span class="price">$5</span></p>
                   <p><a href="#">Bandaid</a> <span class="price">$8</span></p>
-                  <p><a href="#">Neosporin</a> <span class="price">$2</span></p>
+                  <p><a href="#">Neosporin</a> <span class="price">$2</span></p> -->
+                  <table>
+                      <tr th:each = "item: ${items}">
+                        <td th:text = "${item.item}" />
+                          
+                      </tr>
+                  </table>
                   <hr>
-                  <p>Total <span class="price" style="color:black"><b>$16</b></span></p>
+                  <p>Total <span class="price" style="color:black"><b th:text = "${total}"></b></span></p>
                 </div>
               </div>
             </div>

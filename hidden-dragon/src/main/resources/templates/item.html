@@ -171,6 +171,15 @@
             <p>4 items</p>
           </div>
         
+          <table>
+            <tr th:each = "item: ${items}">
+              <td th:text = "${item.name}" />
+              <br>
+              <td>$</td>
+              <td th:text = "${item.price}" />
+            </tr>
+          </table>
+
           <!-- Product grid -->
           <div class="w3-row ">
             <div class="w3-col l3 s6">

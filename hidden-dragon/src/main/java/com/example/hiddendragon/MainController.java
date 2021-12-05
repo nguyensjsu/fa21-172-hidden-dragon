@@ -87,8 +87,8 @@ public class MainController {
   }
 
   @GetMapping("/store")
-  public String getStore(){
-    System.out.println("Accessing page");
+  public String getStore(Model model){
+    System.out.println("Accessing page store");
 
     try {
       ArrayList<Item> items = new ArrayList<Item>();
@@ -102,7 +102,7 @@ public class MainController {
         items.add(storeItem);
         System.out.println(storeItem);
       }
-
+      model.addAttribute("items", items);
       return "item";
     } catch(Exception e)  {
       return "error";
