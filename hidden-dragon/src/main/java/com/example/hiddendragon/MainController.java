@@ -62,7 +62,7 @@ public class MainController {
     ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/login?username=" + user.getUsername() + "&password=" + user.getPassword(), user, User.class);
 
     if(response.getStatusCode() == HttpStatus.OK){
-      return "after_reg";
+      return "checkout";
     } else {
       return "wrongUsePass"; // error page (wrong password or account not found)
     }
