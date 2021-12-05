@@ -25,11 +25,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.ui.Model;
 
-import lombok.extern.slf4j.Slf4j;
-
-@Slf4j
 @RestController // This means that this class is a Controller
-@RequestMapping(path="/") // This means URL's start with /demo (after Application path)
+@RequestMapping(path="/users") // This means URL's start with /demo (after Application path)
 public class UserController {
 
   private final UserRepository userRepository;
@@ -65,7 +62,7 @@ public class UserController {
       }
   }
 
-  @GetMapping("/users")
+  @GetMapping("/")
   CollectionModel<EntityModel<User>> allUsers() {
   
     List<EntityModel<User>> users = userRepository.findAll().stream() //
@@ -85,21 +82,16 @@ public class UserController {
   
     return assembler.toModel(user);
   }
-
- @GetMapping
-   public String home(@ModelAttribute("user") User user, Model model){
-     return "drugstore";
-   }
  
  
 
   @PostMapping ("/register")// Map ONLY POST Requests (path="/register")
-  ResponseEntity<EntityModel<User>> newUser (@ModelAttribute User user, Model model) {
+  ResponseEntity<User> newUser (@ModelAttribute User user, Model model) {
     // @ResponseBody means the returned String is the response, not a view name
     // @RequestParam means it is a parameter from the GET or POST request
     model.addAttribute("user", user);
    
-    ErrorMessages msgs = new ErrorMessages();
+    HttpHeaders responseHeaders = new HttpHeaders();
     //if(user.getPassword() == repeatPassword){
       
       User newUser = userRepository.save(user);
@@ -110,9 +102,9 @@ public class UserController {
 
       model.addAttribute("isRegistered",true);
 
-      return ResponseEntity //
-      .created(linkTo(methodOn(UserController.class).oneUser(newUser.getId())).toUri()) //
-      .body(assembler.toModel(newUser));
+      responseHeaders.set("status", HttpStatus.OK + "");
+
+      return new ResponseEntity(responseHeaders, HttpStatus.OK);
 
 
    // else{
@@ -128,9 +120,10 @@ public class UserController {
 
 
   @PostMapping("/login") // Map ONLY POST Requests
-  ResponseEntity<?> loginUser (@ModelAttribute User user, Model model) {
-    // @ResponseBody means the returned String is the response, not a view name
-    // @RequestParam means it is a parameter from the GET or POST request
+  ResponseEntity<User> loginUser (@ModelAttribute User user, Model model) {
+
+    HttpHeaders responseHeaders = new HttpHeaders();
+
     model.addAttribute("user", user);
 
     User newUser = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword()).orElseThrow(() -> new UserNotFoundException(user.getId()));
@@ -139,7 +132,9 @@ public class UserController {
     // } else {
     //   return "item";
     // }
-    return ResponseEntity.ok(assembler.toModel(userRepository.save(user)));
+    responseHeaders.set("status", HttpStatus.OK + "");
+
+    return new ResponseEntity(responseHeaders, HttpStatus.OK);
   
     
    
