@@ -33,7 +33,8 @@
 - I started working on the front end integration with the controllers in which the data will be sent to either the database or the cybersource API in order to register the user or allow the user to login and process their payments. 
 - Finished the registration for a new user with a successful send to the mySQL database
 - Redesigned the front end to guide the user through registering and logging into their account to see the products to aviod confusion
-- 
+- Added in the reset password into the template
+- Inplemented redirecting links to each class in order to have correct url after navigating through links
 
 **Challenges**
 

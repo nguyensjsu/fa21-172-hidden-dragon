@@ -33,6 +33,10 @@ After submitting to create the account
 -After registering the account the user will be prompted by the message to login to see the products:
 ![login](https://user-images.githubusercontent.com/54514627/144564964-7df0e298-fb31-4c4e-bce7-a5c10fceb5cd.PNG)
 
+-The user also has the option to reset their password using the form in the navigation bar.
+![reset](https://user-images.githubusercontent.com/54514627/144739457-d4ff74d9-533b-405c-b15f-8554905476f7.PNG)
+![resetPass](https://user-images.githubusercontent.com/54514627/144739458-93ff753a-b107-4a91-89e5-50e2ceadc774.PNG)
+
 -After the user logs into their account they will then see the products
 ![products](https://user-images.githubusercontent.com/54514627/144565035-4c32b747-895b-46e2-9767-87b63e93f60e.PNG)
 
