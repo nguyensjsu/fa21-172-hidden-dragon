@@ -60,7 +60,7 @@ public class CartController {
   }
 
   @GetMapping("/total")
-  ResponseEntity<String> totalCartAction(@RequestParam("userId") Integer id, Model model) {
+  ResponseEntity<Integer> totalCartAction(@RequestParam("userId") Integer id, Model model) {
     Cart cart = cartRepository.findByUserId(id);
     
     ArrayList<CartItem> items = cartItemRepository.findByCart(cart);
@@ -70,7 +70,7 @@ public class CartController {
     }
 
     
-    return new ResponseEntity("$" + total, HttpStatus.OK);
+    return new ResponseEntity(total, HttpStatus.OK);
     
   }
 
