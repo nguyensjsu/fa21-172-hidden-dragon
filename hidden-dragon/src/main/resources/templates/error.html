@@ -113,9 +113,9 @@
     </style>
     </head>
             <div class="topnav" >
-                <a href="#home">Home</a>
-                <a onclick="openLoginForm(); closeRegisterForm()">Login</a>
-                <a onclick="openRegisterForm(); closeLoginForm()">Register</a>
+                <a href="#home" th:href = "@{/store}">Home</a>
+                <!-- <a onclick="openLoginForm(); closeRegisterForm()">Login</a>
+                <a onclick="openRegisterForm(); closeLoginForm()">Register</a> -->
                 <!-- <a href="#checkout">Checkout</a> -->
             </div>
             <div>
@@ -155,109 +155,9 @@
           <!-- Push down content on small screens -->
           <div class="w3-hide-large" style="margin-top:83px"></div>
           
-          <!-- Top header -->
-          <!-- <header class="w3-container w3-xlarge">
-            <p class="w3-right">
-              <i class="fa fa-shopping-cart w3-margin-right"></i>
-              <i class="fa fa-search"></i>
-            </p>
-          </header> -->
-        
-          <!-- Image header -->
-          <!-- <div class="w3-display-container w3-container">
-            <img src="../static/images/Capture.PNG" alt="logo" th:src = "@{images/Capture.png}" style="width: 30%;">
-        
-          </div>
-        
-          <div class="w3-container w3-text-grey" id="jeans">
-            <p>4 items</p>
-          </div>
-         -->
-          <!-- Product grid -->
-          <!-- <div class="w3-row ">
-            <div class="w3-col l3 s6">
-              <div class="w3-container">
-                <img src="../static/images/advil.png" th:src = "@{images/advil.png}" style="width:50%">
-                <p>Advil<br><b>$3.50</b></p>
-                
-                <input type="submit" name="action" id="process-payment" value="Add to Cart" class="btn">
-              </div>
-              <br>
-        
-            <div class="w3-container">
-                <img src="../static/images/Bandaid.jpg" th:src = "@{images/Bandaid.jpg}" style="width:50%">
-                <p>BandAid<br><b>$2.00</b></p>
-                <input type="submit" name="action" id="process-payment" value="Add to Cart" class="btn">
-            </div>
-            <br>
-            <div class="w3-container">
-                <img src="../static/images/neo.jpg" th:src = "@{images/neo.jpg}" style="width:50%">
-                <p>Neosporin<br><b>$4.00</b></p>
-                <input type="submit" name="action" id="process-payment" value="Add to Cart" class="btn">
-            </div>\
-            <br>
-            <div class="w3-container">
-              <img src="../static/images/mask.jpg" th:src = "@{images/mask.jpg}" style="width:50%">
-              <p>Mask<br><b>$1.00</b></p>
-              <input type="submit" name="action" id="process-payment" value="Add to Cart" class="btn">
-          </div>
-          <br>
-            </div> -->
-            
+   
 
-            <!-- Login Form -->
-            <div class="form-popup" id="loginForm">
-              <form action="#" th:action="@{/login}" th:object="${user}" class="form-container" method = "POST" >
-                <h1>Login</h1>
-
-                <label for="email"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="username" required th:field = "*{username}">
-
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required th:field = "*{password}">
-
-                <!-- <button type="submit" class="btn">Login</button> -->
-                <input type="submit" name="action" id="login" value="Login" class="btn">
-                <button type="button" class="btn cancel" onclick="closeLoginForm()">Close</button>
-                
-            </form>
-            </div>
-
-            <!-- Register Form -->
-            <div class="form-popup" id="regForm">
-                <form action="#" th:action="@{/register}" th:object="${user}" class="form-container" method = "POST" >
-                    <h1>Register</h1>
-    
-                    <p th:if="${isRegistered}">Registered</p>
-                    <label for="email"><b>Username</b></label>
-                    <input type="text" placeholder="Enter Username" name="username" required th:field = "*{username}">
-    
-                    <label for="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" required th:field = "*{password}">
-
-                    <label for="psw"><b>Repeat Password</b></label>
-                    <input type="password" placeholder="Enter Repeat Password" name="psw" required>
-    
-                    <!-- <button type="submit" onclick = "closeRegisterForm()" class="btn">Register</button> -->
-                    <input type="submit" name="action" id="register" value="Register" class="btn">
-                    <button type="button" class="btn cancel" onclick="closeRegisterForm()">Close</button>
-                </form>
-                </div>
-
-            <script>
-            function openLoginForm() {
-            document.getElementById("loginForm").style.display = "block";
-            }
-            function openRegisterForm() {
-            document.getElementById("regForm").style.display = "block";
-            }
-            function closeLoginForm() {
-            document.getElementById("loginForm").style.display = "none";
-            }
-            function closeRegisterForm() {
-            document.getElementById("regForm").style.display = "none";
-            }
-            </script>
+         
      
         
         </body>

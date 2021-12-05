@@ -64,7 +64,7 @@ public class MainController {
     try {
       ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/login?username=" + user.getUsername() + "&password=" + user.getPassword(), user, User.class);
 
-      return "item";
+      return "redirect:/store";
     } catch(Exception e) {
       return "wrongUsePass"; 
     }
@@ -114,6 +114,12 @@ public class MainController {
   @GetMapping("/error")
   public String getErrorpage(){
     return "error";
+
+  }
+
+  @GetMapping("/checkout")
+  public String getCheckout(){
+    return "checkout";
 
   }
 
