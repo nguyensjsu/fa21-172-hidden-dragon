@@ -25,66 +25,11 @@ import java.util.stream.StreamSupport;
 @RequestMapping(path="/items") // This means URL's start with /demo (after Application path)
 public class ItemController {
   private final ItemRepository itemRepository;
-  private final ItemModelAssembler assembler;
 
-  ItemController(ItemRepository itemRepository, ItemModelAssembler assembler) {
+  ItemController(ItemRepository itemRepository) {
 
     this.itemRepository = itemRepository;
-    this.assembler = assembler;
   }
 
   
-
-  @GetMapping("/")
-  CollectionModel<EntityModel<Item>> allItems() {
-  
-    List<EntityModel<Item>> items = itemRepository.findAll().stream() //
-        .map(assembler::toModel) //
-        .collect(Collectors.toList());
-  
-    return CollectionModel.of(items, linkTo(methodOn(ItemController.class).allItems()).withSelfRel());
-  }
-
-  @GetMapping("/{id}")
-  EntityModel<Item> oneItem(@PathVariable Integer id) {
-  
-    Item item = itemRepository.findById(id) //
-        .orElseThrow(() -> new ItemNotFoundException(id));
-  
-    return assembler.toModel(item);
-  }
-
-  @PostMapping(path="/") // Map ONLY POST Requests
-  ResponseEntity<EntityModel<Item>> newItem (@RequestBody Item item) {
-    // @ResponseBody means the returned String is the response, not a view name
-    // @RequestParam means it is a parameter from the GET or POST request
-    Item newItem = itemRepository.save(item);
-    return ResponseEntity //
-    .created(linkTo(methodOn(ItemController.class).oneItem(newItem.getId())).toUri()) //
-    .body(assembler.toModel(newItem));
-  }
-
-
-  @PostMapping(path="/{id}/purchase") // Map ONLY POST Requests
-  ResponseEntity<?> purchaseItem (@PathVariable Integer id) {
-    // @ResponseBody means the returned String is the response, not a view name
-    // @RequestParam means it is a parameter from the GET or POST request
-
-    Item item = itemRepository.findById(id).orElseThrow(() -> new ItemNotFoundException(id));
-    System.out.println(item.getStock());
-    if(item.getStock() == 0){
-      return ResponseEntity //
-      .status(HttpStatus.METHOD_NOT_ALLOWED) //
-      .header(HttpHeaders.CONTENT_TYPE, MediaTypes.HTTP_PROBLEM_DETAILS_JSON_VALUE) //
-      .body(Problem.create() //
-          .withTitle("Method not allowed") //
-          .withDetail("You can't order this item " + item.getStock() + " left"));
-    } else {
-      item.setStock(item.getStock() - 1);
-      itemRepository.save(item);
-      return ResponseEntity.ok(assembler.toModel(itemRepository.save(item)));
-    }
-    
-  
-  }
 }

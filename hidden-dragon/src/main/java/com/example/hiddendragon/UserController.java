@@ -31,12 +31,10 @@ public class UserController {
 
   private final UserRepository userRepository;
   private final CartRepository cartRepository;
-  private final UserModelAssembler assembler;
 
-  UserController(UserRepository userRepository, CartRepository cartRepository, UserModelAssembler assembler) {
+  UserController(UserRepository userRepository, CartRepository cartRepository) {
 
     this.userRepository = userRepository;
-    this.assembler = assembler;
     this.cartRepository = cartRepository;
   }
 
@@ -62,29 +60,6 @@ public class UserController {
       }
   }
 
-  @GetMapping("/")
-  CollectionModel<EntityModel<User>> allUsers() {
-  
-    List<EntityModel<User>> users = userRepository.findAll().stream() //
-        .map(assembler::toModel) //
-        .collect(Collectors.toList());
-
- 
-    return CollectionModel.of(users, linkTo(methodOn(UserController.class).allUsers()).withSelfRel());
-    
-  }
-
-  @GetMapping("/{id}")
-  EntityModel<User> oneUser(@PathVariable Integer id) {
-  
-    User user = userRepository.findById(id) //
-        .orElseThrow(() -> new UserNotFoundException(id));
-  
-    return assembler.toModel(user);
-  }
- 
- 
-
   @PostMapping ("/register")// Map ONLY POST Requests (path="/register")
   ResponseEntity<User> newUser (@ModelAttribute User user, Model model) {
       model.addAttribute("user", user);
@@ -95,7 +70,7 @@ public class UserController {
         User newUser = userRepository.saveAndFlush(user);
 
         Cart c = new Cart();
-        c.setUserId(newUser.getId());
+        c.setUserId(newUser.getUserId());
         cartRepository.save(c);
 
         model.addAttribute("isRegistered",true);
@@ -129,7 +104,7 @@ public class UserController {
 
     model.addAttribute("user", user);
 
-    User newUser = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword()).orElseThrow(() -> new UserNotFoundException(user.getId()));
+    User newUser = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword()).orElseThrow(() -> new UserNotFoundException(user.getUserId()));
     // if(u.isEmpty()){
     //   return "wrongUsePass";
     // } else {
@@ -137,8 +112,10 @@ public class UserController {
     // }
     if(newUser != null){
       responseHeaders.set("status", HttpStatus.OK + "");
+      System.out.println("Signed in");
     } else {
       responseHeaders.set("status", HttpStatus.UNAUTHORIZED + "");
+      System.out.println("Wrong password or nonexistent user");
     }
    
 

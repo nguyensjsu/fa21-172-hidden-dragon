@@ -1,6 +1,7 @@
 package com.example.hiddendragon;
 
 import java.util.Optional;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.*;
@@ -23,49 +24,45 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @RestController // This means that this class is a Controller
-@RequestMapping(path="/cart") // This means URL's start with /demo (after Application path)
+@RequestMapping(path="/carts") // This means URL's start with /demo (after Application path)
 public class CartController {
   private final CartRepository cartRepository;
   private final CartItemRepository cartItemRepository;
-  private final CartModelAssembler assembler;
 
-  CartController(CartRepository cartRepository,CartItemRepository cartItemRepository, CartModelAssembler assembler) {
+  CartController(CartRepository cartRepository,CartItemRepository cartItemRepository) {
     this.cartItemRepository = cartItemRepository;
     this.cartRepository = cartRepository;
-    this.assembler = assembler;
   }
 
   @GetMapping("/")
-  CollectionModel<EntityModel<Cart>> allCarts() {
-  
-    List<EntityModel<Cart>> carts = cartRepository.findAll().stream() //
-        .map(assembler::toModel) //
-        .collect(Collectors.toList());
-  
-    return CollectionModel.of(carts, linkTo(methodOn(CartController.class).allCarts()).withSelfRel());
-  }
+  ResponseEntity<ArrayList<CartItem>> getItems(@RequestParam("userId") Integer id, Model model) {
+    Cart cart = cartRepository.findByUserId(id);
+    
+    ArrayList<CartItem> items = cartItemRepository.findByCart(cart);
+    for(CartItem i : items){
+      System.out.println(i);
+    }
 
-  @GetMapping("/{id}")
-  EntityModel<Cart> oneCart(@PathVariable Integer id) {
-  
-    Cart cart = cartRepository.findByUserId(id) //
-        .orElseThrow(() -> new CartNotFoundException(id));
-  
-    return assembler.toModel(cart);
+    
+    return new ResponseEntity(items, HttpStatus.OK);
+    
   }
+  
 
-  @PostMapping("/{id}/add")
-  ResponseEntity<EntityModel<Cart>> addItem(@PathVariable Integer id, @ModelAttribute Item item, Model model) {
-    Cart cart = cartRepository.findByUserId(id).orElseThrow(()-> new CartNotFoundException(id));
+  @PostMapping("/add")
+  ResponseEntity<Cart> addItem(@RequestParam("userId") Integer id, @RequestParam("quantity") Integer quantity, @ModelAttribute Item item, Model model) {
+    Cart cart = cartRepository.findByUserId(id);
+
+    HttpHeaders responseHeaders = new HttpHeaders();
+
     CartItem ci = new CartItem();
-    ci.setId(cart.getId());
-    ci.setItemId(item.getId());
-    ci.setQuantity(1);
+    ci.setItem(item);
+    ci.setCart(cart);
+    ci.setQuantity(quantity);
     cartItemRepository.save(ci);
 
-    return ResponseEntity //
-    .created(linkTo(methodOn(CartController.class).oneCart(cart.getId())).toUri()) //
-    .body(assembler.toModel(cart));
+    responseHeaders.set("status", HttpStatus.OK + "");
+    return new ResponseEntity(responseHeaders, HttpStatus.OK);
   }
 
 }

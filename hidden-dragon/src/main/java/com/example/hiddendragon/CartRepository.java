@@ -14,5 +14,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 // CRUD refers Create, Read, Update, Delete
 
 public interface CartRepository extends JpaRepository<Cart, Integer> {
-  Optional<Cart> findByUserId(Integer user_id);
+  Cart findByUserId(Integer userId);
 }

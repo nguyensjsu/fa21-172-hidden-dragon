@@ -45,6 +45,7 @@ public class MainController {
 
     //run on docker
     private String USERS_URI = "http://localhost:8080/users";
+    private String CARTS_URI = "http://localhost:8080/carts";
 
 @GetMapping
 public String home(@ModelAttribute User user, Model model) {
@@ -55,10 +56,10 @@ public String home(@ModelAttribute User user, Model model) {
 
 @PostMapping("/login")
 public String login(@ModelAttribute User user ){
-  log.info("User " + user.getUserame() + " attemped login");
-  System.out.println(user.getUserame() + " / " + user.getPassword());
+  log.info("User " + user.getUsername() + " attemped login");
+  System.out.println(user.getUsername() + " / " + user.getPassword());
 
-  ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/login?username=" + user.getUserame() + "&password=" + user.getPassword(), user, User.class);
+  ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/login?username=" + user.getUsername() + "&password=" + user.getPassword(), user, User.class);
 
   if(response.getHeaders().getFirst("status").equals(HttpStatus.OK + "")){
     return "drugstore";
@@ -70,10 +71,25 @@ public String login(@ModelAttribute User user ){
 
 @PostMapping("/register")
 public String register(@ModelAttribute User user ){
-  log.info("User " + user.getUserame() + " / " + user.getPassword() + " attemped register");
-  System.out.println(user.getUserame() + " / " + user.getPassword());
+  log.info("User " + user.getUsername() + " / " + user.getPassword() + " attemped register");
+  System.out.println(user.getUsername() + " / " + user.getPassword());
 
-  ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/register?username=" + user.getUserame() + "&password=" + user.getPassword(), user, User.class);
+  ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/register?username=" + user.getUsername() + "&password=" + user.getPassword(), user, User.class);
+
+  System.out.println(response.getHeaders().getFirst("status"));
+
+  if(response.getHeaders().getFirst("status").equals(HttpStatus.OK + "")){
+    return "drugstore";
+  } else {
+    return ""; // error page (duplicate signup)
+  }
+
+}
+
+@PostMapping("/cart")
+public String getCart(){
+
+  ResponseEntity<CartItem> response = restTemplate.getForEntity(CARTS_URI, CartItem.class);
 
   System.out.println(response.getHeaders().getFirst("status"));
 
