@@ -103,11 +103,31 @@ public class UserController {
       return new ResponseEntity(user, HttpStatus.UNAUTHORIZED);
     }
    
+  }
 
+  @PostMapping ("/reset")// Map ONLY POST Requests (path="/register")
+  ResponseEntity<User> resetPassword (@RequestParam("username") String username, @RequestParam("newPassword") String newPassword, @RequestParam("existingPassword") String existingPassword) {
+    User user = userRepository.findByUsernameAndPassword(username, existingPassword);
+
+     
+       try {
+        
+        if(user == null) {
+          return new ResponseEntity(user, HttpStatus.BAD_REQUEST);
+        } else if(!user.getPassword().equals(existingPassword)){
+          return new ResponseEntity(user, HttpStatus.UNAUTHORIZED);
+        } else {
+          user.setPassword(newPassword);
+          userRepository.save(user);
+          return new ResponseEntity(user, HttpStatus.OK);
+        }
+
+        
+
+      } catch(Exception e){
+        return new ResponseEntity(user, HttpStatus.BAD_REQUEST);
+      }
     
-  
-    
-   
   }
   
 }
