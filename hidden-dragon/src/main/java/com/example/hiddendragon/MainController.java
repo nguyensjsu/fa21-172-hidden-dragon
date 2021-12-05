@@ -16,6 +16,7 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.server.ResponseStatusException;
 import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -87,11 +88,13 @@ public class MainController {
   }
 
   @PostMapping("/reset")
-  public String reset(@RequestParam("username") String username, @RequestParam("existingPassword") String existingPassword, @RequestParam("newPassword") String newPassword ){
+  public String reset(@RequestParam("username") String username, @RequestParam("existingPassword") String existingPassword, @RequestParam("newPassword") String newPassword, Model model ){
     System.out.println("Resetting password for" + username + " " + existingPassword + " new password: " + newPassword);
     try {
-      ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/reset?username=" + username + "&existingPassword=" + existingPassword + "&newPassword=" + newPassword, new User(), User.class);
-      
+      ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/reset?username=" + username + "&existingPassword=" + existingPassword + "&newPassword=" + newPassword, null, User.class);
+
+      model.addAttribute("user", response.getBody());
+      System.out.println(response.toString());
       return "after_reg";
     } catch(Exception e) {
       return "error";
