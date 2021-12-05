@@ -17,7 +17,7 @@ import javax.persistence.ManyToOne;
 public class CartItem {
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
-  private Integer itemId;
+  private Integer id;
 
   @ManyToOne 
   private Item item;

@@ -41,24 +41,24 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://{{host}}:{{port}}/user/login?username=aaron33&password=testerok",
+					"raw": "http://{{host}}:{{port}}/users/login?username=micheal23&password=quangster",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
 					],
 					"port": "{{port}}",
 					"path": [
-						"user",
+						"users",
 						"login"
 					],
 					"query": [
 						{
 							"key": "username",
-							"value": "aaron33"
+							"value": "micheal23"
 						},
 						{
 							"key": "password",
-							"value": "testerok"
+							"value": "quangster"
 						}
 					]
 				}
@@ -103,7 +103,7 @@
 				"method": "POST",
 				"header": [],
 				"url": {
-					"raw": "http://{{host}}:{{port}}/cart/add?id=11&item_id=1&quantity=2",
+					"raw": "http://{{host}}:{{port}}/cart/add?id=1&item_id=1&quantity=2",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
@@ -116,7 +116,7 @@
 					"query": [
 						{
 							"key": "id",
-							"value": "11",
+							"value": "1",
 							"description": "User ID"
 						},
 						{
@@ -139,17 +139,8 @@
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
-			},
-			"response": []
-		},
-		{
-			"name": "Purchase Item",
-			"request": {
-				"method": "POST",
-				"header": [],
 				"url": {
-					"raw": "http://{{host}}:{{port}}/items/1",
+					"raw": "http://{{host}}:{{port}}/items/",
 					"protocol": "http",
 					"host": [
 						"{{host}}"
@@ -157,18 +148,29 @@
 					"port": "{{port}}",
 					"path": [
 						"items",
-						"1"
+						""
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "Get Cart",
+			"name": "Add Item",
 			"request": {
 				"method": "GET",
 				"header": [],
-				"url": null
+				"url": {
+					"raw": "http://{{host}}:{{port}}/items/",
+					"protocol": "http",
+					"host": [
+						"{{host}}"
+					],
+					"port": "{{port}}",
+					"path": [
+						"items",
+						""
+					]
+				}
 			},
 			"response": []
 		}

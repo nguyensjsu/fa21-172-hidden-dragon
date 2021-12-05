@@ -2,6 +2,7 @@ package com.example.hiddendragon;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -14,17 +15,20 @@ import lombok.RequiredArgsConstructor;
 public class Item {
   @Id
   @GeneratedValue(strategy=GenerationType.AUTO)
-  private Integer item_id;
+  private Integer id;
 
-  private String item_name;
+  @Column(unique=true)
+  private String name;
 
   private Integer price;
 
   private Integer stock;
 
   public String toString() {
-    return "Item name: " + item_name + " / Price: " + price + " / Remaining Stock: " + stock; 
+    return "Item name: " + name + " / Price: " + price + " / Remaining Stock: " + stock; 
   }
+
+  
   
   
 }

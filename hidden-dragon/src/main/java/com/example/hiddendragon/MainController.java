@@ -61,7 +61,7 @@ public String login(@ModelAttribute User user ){
 
   ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/login?username=" + user.getUsername() + "&password=" + user.getPassword(), user, User.class);
 
-  if(response.getHeaders().getFirst("status").equals(HttpStatus.OK + "")){
+  if(response.getStatusCode() == HttpStatus.OK){
     return "drugstore";
   } else {
     return ""; // error page (wrong password or account not found)
@@ -76,9 +76,9 @@ public String register(@ModelAttribute User user ){
 
   ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/register?username=" + user.getUsername() + "&password=" + user.getPassword(), user, User.class);
 
-  System.out.println(response.getHeaders().getFirst("status"));
+  System.out.println(response.getStatusCode());
 
-  if(response.getHeaders().getFirst("status").equals(HttpStatus.OK + "")){
+  if(response.getStatusCode() == HttpStatus.OK){
     return "drugstore";
   } else {
     return ""; // error page (duplicate signup)

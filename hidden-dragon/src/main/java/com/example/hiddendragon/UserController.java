@@ -67,30 +67,19 @@ public class UserController {
       HttpHeaders responseHeaders = new HttpHeaders();
       //if(user.getPassword() == repeatPassword){
       try {
-        User newUser = userRepository.saveAndFlush(user);
+        User newUser = userRepository.save(user);
 
         Cart c = new Cart();
-        c.setUserId(newUser.getUserId());
+        c.setUserId(newUser.getId());
         cartRepository.save(c);
 
         model.addAttribute("isRegistered",true);
 
-        responseHeaders.set("status", HttpStatus.OK + "");
+        return new ResponseEntity(user, HttpStatus.OK);
 
       } catch(Exception e){
-        responseHeaders.set("status", HttpStatus.CONFLICT + "");
+        return new ResponseEntity(user, HttpStatus.CONFLICT);
       }
-      
-
-      return new ResponseEntity(responseHeaders, HttpStatus.OK);
-
-
-   // else{
-      // msgs.add("The passwords do not match");
-      // msgs.print();
-      // return "drugstore";
-
-   // }
     
   }
 
@@ -104,22 +93,22 @@ public class UserController {
 
     model.addAttribute("user", user);
 
-    User newUser = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword()).orElseThrow(() -> new UserNotFoundException(user.getUserId()));
+    User newUser = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
     // if(u.isEmpty()){
     //   return "wrongUsePass";
     // } else {
     //   return "item";
     // }
-    if(newUser != null){
-      responseHeaders.set("status", HttpStatus.OK + "");
+    if(newUser != null){    
       System.out.println("Signed in");
+      return new ResponseEntity(user, HttpStatus.OK);  
     } else {
-      responseHeaders.set("status", HttpStatus.UNAUTHORIZED + "");
       System.out.println("Wrong password or nonexistent user");
+      return new ResponseEntity(null, HttpStatus.UNAUTHORIZED);
     }
    
 
-    return new ResponseEntity(responseHeaders, HttpStatus.OK);
+    
   
     
    
