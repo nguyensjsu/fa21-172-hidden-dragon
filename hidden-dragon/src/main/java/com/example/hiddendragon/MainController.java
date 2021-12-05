@@ -41,65 +41,70 @@ import java.util.regex.Pattern;
 public class MainController {
 
     @Autowired
-	  private RestTemplate restTemplate;
+    private RestTemplate restTemplate;
+    
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 
     //run on docker
     private String USERS_URI = "http://localhost:8080/users";
     private String CARTS_URI = "http://localhost:8080/carts";
 
-@GetMapping
-public String home(@ModelAttribute User user, Model model) {
-    System.out.println("Redirecting to home");
-    
-    return "drugstore";
-}
-
-@PostMapping("/login")
-public String login(@ModelAttribute User user ){
-  log.info("User " + user.getUsername() + " attemped login");
-  System.out.println(user.getUsername() + " / " + user.getPassword());
-
-  ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/login?username=" + user.getUsername() + "&password=" + user.getPassword(), user, User.class);
-
-  if(response.getStatusCode() == HttpStatus.OK){
-    return "drugstore";
-  } else {
-    return ""; // error page (wrong password or account not found)
+  @GetMapping
+  public String home(@ModelAttribute User user, Model model) {
+      System.out.println("Redirecting to home");
+      
+      return "drugstore";
   }
 
-}
+  @PostMapping("/login")
+  public String login(@ModelAttribute User user ){
+    log.info("User " + user.getUsername() + " attemped login");
+    System.out.println(user.getUsername() + " / " + user.getPassword());
 
-@PostMapping("/register")
-public String register(@ModelAttribute User user ){
-  log.info("User " + user.getUsername() + " / " + user.getPassword() + " attemped register");
-  System.out.println(user.getUsername() + " / " + user.getPassword());
+    ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/login?username=" + user.getUsername() + "&password=" + user.getPassword(), user, User.class);
 
-  ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/register?username=" + user.getUsername() + "&password=" + user.getPassword(), user, User.class);
+    if(response.getStatusCode() == HttpStatus.OK){
+      return "drugstore";
+    } else {
+      return ""; // error page (wrong password or account not found)
+    }
 
-  System.out.println(response.getStatusCode());
-
-  if(response.getStatusCode() == HttpStatus.OK){
-    return "drugstore";
-  } else {
-    return ""; // error page (duplicate signup)
   }
 
-}
+  @PostMapping("/register")
+  public String register(@ModelAttribute User user ){
+    log.info("User " + user.getUsername() + " / " + user.getPassword() + " attemped register");
+    System.out.println(user.getUsername() + " / " + user.getPassword());
 
-@PostMapping("/cart")
-public String getCart(){
+    ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/register?username=" + user.getUsername() + "&password=" + user.getPassword(), user, User.class);
 
-  ResponseEntity<CartItem> response = restTemplate.getForEntity(CARTS_URI, CartItem.class);
+    System.out.println(response.getStatusCode());
 
-  System.out.println(response.getHeaders().getFirst("status"));
+    if(response.getStatusCode() == HttpStatus.OK){
+      return "drugstore";
+    } else {
+      return ""; // error page (duplicate signup)
+    }
 
-  if(response.getHeaders().getFirst("status").equals(HttpStatus.OK + "")){
-    return "drugstore";
-  } else {
-    return ""; // error page (duplicate signup)
   }
 
-}
+  @PostMapping("/cart")
+  public String getCart(){
+
+    ResponseEntity<CartItem> response = restTemplate.getForEntity(CARTS_URI, CartItem.class);
+
+    System.out.println(response.getHeaders().getFirst("status"));
+
+    if(response.getHeaders().getFirst("status").equals(HttpStatus.OK + "")){
+      return "drugstore";
+    } else {
+      return ""; // error page (duplicate signup)
+    }
+
+  }
 
 
   }

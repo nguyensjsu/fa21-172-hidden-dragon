@@ -29,14 +29,10 @@ import org.springframework.ui.Model;
 @RequestMapping(path="/users") // This means URL's start with /demo (after Application path)
 public class UserController {
 
-  private final UserRepository userRepository;
-  private final CartRepository cartRepository;
-
-  UserController(UserRepository userRepository, CartRepository cartRepository) {
-
-    this.userRepository = userRepository;
-    this.cartRepository = cartRepository;
-  }
+  @Autowired
+  private UserRepository userRepository;
+  @Autowired
+  private CartRepository cartRepository;
 
   @Getter
   @Setter

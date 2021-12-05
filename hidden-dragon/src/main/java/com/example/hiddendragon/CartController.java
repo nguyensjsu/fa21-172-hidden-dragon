@@ -6,8 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.*;
 import org.springframework.ui.Model;
-
+import org.springframework.amqp.core.Queue;
+import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpHeaders;
@@ -26,13 +30,20 @@ import java.util.stream.StreamSupport;
 @RestController // This means that this class is a Controller
 @RequestMapping(path="/carts") // This means URL's start with /demo (after Application path)
 public class CartController {
-  private final CartRepository cartRepository;
-  private final CartItemRepository cartItemRepository;
+  @Autowired
+  private CartRepository cartRepository;
 
-  CartController(CartRepository cartRepository,CartItemRepository cartItemRepository) {
-    this.cartItemRepository = cartItemRepository;
-    this.cartRepository = cartRepository;
+  @Autowired
+  private CartItemRepository cartItemRepository;
+
+
+  @Bean
+  public RabbitMq receiver() {
+      return new RabbitMq();
   }
+
+  @Autowired
+  private RabbitMq receiver;
 
   @GetMapping("/")
   ResponseEntity<ArrayList<CartItem>> getItems(@RequestParam("userId") Integer id, Model model) {
@@ -63,6 +74,22 @@ public class CartController {
 
     responseHeaders.set("status", HttpStatus.OK + "");
     return new ResponseEntity(responseHeaders, HttpStatus.OK);
+  }
+
+  @Component
+  public class RabbitMq {
+    private RabbitTemplate rabbitTemplate;
+
+
+    @Bean
+    public Queue hello() {
+        return new Queue("hiddendragon");
+    }
+
+    @RabbitListener(queues = "paymentConfirmation")
+    public void receive(String message) {
+        System.out.println("message received: " + message);
+    }
   }
 
 }
