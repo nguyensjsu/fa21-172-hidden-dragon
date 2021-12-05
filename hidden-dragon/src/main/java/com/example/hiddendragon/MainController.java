@@ -124,7 +124,7 @@ public class MainController {
     try {
       ArrayList<CartItem> items = new ArrayList<CartItem>();
       ResponseEntity<ArrayList> response = restTemplate.getForEntity(CARTS_URI, ArrayList.class, id);
-      ResponseEntity<Integer> response = restTemplate.getForEntity(CARTS_URI + "/total?=" + id, ArrayList.class, id);
+      ResponseEntity<Integer> totalResponse = restTemplate.getForEntity(CARTS_URI + "/total?=" + id, ArrayList.class, id);
       ObjectMapper mapper = new ObjectMapper();
 
       for(Object item: response.getBody()){
@@ -136,7 +136,7 @@ public class MainController {
       }
 
       model.addAttribute("items", items);
-      model.addAttribute("total", total);
+      model.addAttribute("total", totalResponse.getBody());
 
       return "checkout";
     } catch(Exception e)  {
