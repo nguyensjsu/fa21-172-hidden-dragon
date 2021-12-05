@@ -45,7 +45,7 @@ public class CartController {
       return new RabbitMq();
   }
 
-  @GetMapping("/")
+  @GetMapping
   ResponseEntity<ArrayList<CartItem>> getItems(@RequestParam("userId") Integer id, Model model) {
     Cart cart = cartRepository.findByUserId(id);
     

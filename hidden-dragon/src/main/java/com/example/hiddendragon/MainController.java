@@ -46,7 +46,7 @@ public class MainController {
     //run on docker
     private String USERS_URI = "http://localhost:8080/users";
     private String CARTS_URI = "http://localhost:8080/carts";
-    private String ITEM_URI = "http://localhost:8080/ites";
+    private String ITEM_URI = "http://localhost:8080/items";
 
   @GetMapping
   public String home(@ModelAttribute User user, Model model) {
@@ -88,16 +88,56 @@ public class MainController {
 
   @GetMapping("/store")
   public String getStore(){
-    return "item";
+    System.out.println("Accessing page");
+
+    try {
+      ArrayList<Item> items = new ArrayList<Item>();
+      ResponseEntity<ArrayList> response = restTemplate.getForEntity(ITEM_URI, ArrayList.class);
+      ObjectMapper mapper = new ObjectMapper();
+
+      for(Object item: response.getBody()){
+        Item storeItem = new Item();
+
+        storeItem = mapper.convertValue(item, Item.class);
+        items.add(storeItem);
+        System.out.println(storeItem);
+      }
+
+      return "item";
+    } catch(Exception e)  {
+      return "error";
+    }
+    
 
   }
 
-  @GetMapping("/cart")
+  @GetMapping("/error")
+  public String getErrorpage(){
+    return "error";
+
+  }
+
+  @GetMapping("/shopping")
   public String getCart(@RequestParam(value="userId") Integer id, Model model ){
-    ResponseEntity<CartItem> response = restTemplate.getForEntity(CARTS_URI, CartItem.class, id);
     System.out.println("User " + id + "accessing cart");
 
-    return "checkout";
+    try {
+      ArrayList<CartItem> items = new ArrayList<CartItem>();
+      ResponseEntity<ArrayList> response = restTemplate.getForEntity(CARTS_URI, ArrayList.class, id);
+      ObjectMapper mapper = new ObjectMapper();
+
+      for(Object item: response.getBody()){
+        CartItem cartItem = new CartItem();
+
+        cartItem = mapper.convertValue(cartItem, CartItem.class);
+        items.add(cartItem);
+        System.out.println(cartItem);
+      }
+
+      return "checkout";
+    } catch(Exception e)  {
+      return "error";
+    }
 
   }
 
