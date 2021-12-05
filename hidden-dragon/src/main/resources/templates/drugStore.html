@@ -114,8 +114,9 @@
     </head>
             <div class="topnav" >
                 <a href="#home">Home</a>
-                <a onclick="openLoginForm(); closeRegisterForm()">Login</a>
-                <a onclick="openRegisterForm(); closeLoginForm()">Register</a>
+                <a onclick="openLoginForm(); closeRegisterForm(); closeresetForm()">Login</a>
+                <a onclick="openRegisterForm(); closeLoginForm(); closeresetForm()">Register</a>
+                <a onclick="openresetForm(); closeRegisterForm(); closeLoginForm()">Reset Password</a>
                 <!-- <a href="#checkout">Checkout</a> -->
             </div>
             <div>
@@ -243,7 +244,26 @@
                     <button type="button" class="btn cancel" onclick="closeRegisterForm()">Close</button>
                 </form>
                 </div>
+                    <!-- Reset Password Form -->
+                    <div class="form-popup" id="resetForm">
+                        <form action="#" class="form-container" method = "POST" >
+                            <!-- th:action="@{/login}" th:object="${user}" -->
+                        <h1>Login</h1>
 
+                        <label for="email"><b>Username</b></label>
+                        <input type="text" placeholder="Enter Username" name="username" required >
+                        <!-- th:field = "*{username}" -->
+                        <label for="psw"><b>Old Password</b></label>
+                        <input type="password" placeholder="Enter Old Password" name="psw" required >
+                        <!-- th:field = "*{password}" -->
+                        <label for="psw"><b>New Password</b></label>
+                        <input type="password" placeholder="Enter New Password" name="psw" required >
+                        <!-- <button type="submit" class="btn">Login</button> -->
+                        <input type="submit" name="action" id="reset" value="Reset Password" class="btn">
+                        <button type="button" class="btn cancel" onclick="closeLoginForm()">Close</button>
+                        
+                    </form>
+                    </div>
             <script>
             function openLoginForm() {
             document.getElementById("loginForm").style.display = "block";
@@ -256,6 +276,13 @@
             }
             function closeRegisterForm() {
             document.getElementById("regForm").style.display = "none";
+            }
+            function openresetForm() {
+            document.getElementById("resetForm").style.display = "block";
+            }
+           
+            function closeresetForm() {
+            document.getElementById("resetForm").style.display = "none";
             }
             </script>
      
