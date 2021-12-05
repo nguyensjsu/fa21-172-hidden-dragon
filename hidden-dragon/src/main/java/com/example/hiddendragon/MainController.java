@@ -130,7 +130,7 @@ public class MainController {
     try {
       ArrayList<CartItem> items = new ArrayList<CartItem>();
       ResponseEntity<ArrayList> response = restTemplate.getForEntity(CARTS_URI, ArrayList.class, id);
-      ResponseEntity<Integer> totalResponse = restTemplate.getForEntity(CARTS_URI + "/total?=" + id, ArrayList.class, id);
+      ResponseEntity<Integer> totalResponse = restTemplate.getForEntity(CARTS_URI + "/total?=" + id, Integer.class, id);
       ObjectMapper mapper = new ObjectMapper();
 
       for(Object item: response.getBody()){
