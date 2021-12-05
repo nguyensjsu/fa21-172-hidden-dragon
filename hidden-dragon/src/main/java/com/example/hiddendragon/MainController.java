@@ -42,11 +42,6 @@ public class MainController {
 
     @Autowired
     private RestTemplate restTemplate;
-    
-    @Bean
-    public RestTemplate restTemplate() {
-        return new RestTemplate();
-    }
 
     //run on docker
     private String USERS_URI = "http://localhost:8080/users";
@@ -83,7 +78,7 @@ public class MainController {
 
     System.out.println(response.getStatusCode());
 
-    if(response.getStatusCode() == HttpStatus.OK){
+    if(response.getStatusCode().equals(HttpStatus.OK)){
       return "drugstore";
     } else {
       return ""; // error page (duplicate signup)
@@ -96,9 +91,7 @@ public class MainController {
 
     ResponseEntity<CartItem> response = restTemplate.getForEntity(CARTS_URI, CartItem.class);
 
-    System.out.println(response.getHeaders().getFirst("status"));
-
-    if(response.getHeaders().getFirst("status").equals(HttpStatus.OK + "")){
+    if(response.getStatusCode().equals(HttpStatus.OK)){
       return "drugstore";
     } else {
       return ""; // error page (duplicate signup)

@@ -12,6 +12,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
+import org.springframework.web.client.RestTemplate;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpHeaders;
@@ -36,14 +37,13 @@ public class CartController {
   @Autowired
   private CartItemRepository cartItemRepository;
 
+  @Autowired
+  private RabbitMq receiver;
 
   @Bean
   public RabbitMq receiver() {
       return new RabbitMq();
   }
-
-  @Autowired
-  private RabbitMq receiver;
 
   @GetMapping("/")
   ResponseEntity<ArrayList<CartItem>> getItems(@RequestParam("userId") Integer id, Model model) {
@@ -74,22 +74,6 @@ public class CartController {
 
     responseHeaders.set("status", HttpStatus.OK + "");
     return new ResponseEntity(responseHeaders, HttpStatus.OK);
-  }
-
-  @Component
-  public class RabbitMq {
-    private RabbitTemplate rabbitTemplate;
-
-
-    @Bean
-    public Queue hello() {
-        return new Queue("hiddendragon");
-    }
-
-    @RabbitListener(queues = "paymentConfirmation")
-    public void receive(String message) {
-        System.out.println("message received: " + message);
-    }
   }
 
 }
