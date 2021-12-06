@@ -10,8 +10,7 @@ services:
       - "15672:15672"
     networks:
       - network
-    restart:
-      - always
+    
   mysql:
     image: mysql:8.0
     volumes:
@@ -25,13 +24,6 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: "cmpe172"
     restart: always  
-
-  rabbitmq:
-  image: rabbitmq:management
-  ports:
-    - "5672:5672"
-    - "15672:15672"
-    
          
   drugStore:
     image: hidden-dragon
