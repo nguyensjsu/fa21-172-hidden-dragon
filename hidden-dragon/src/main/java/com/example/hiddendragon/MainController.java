@@ -395,7 +395,7 @@ private  static Map<String,String> states = new HashMap<>(); static{
     System.out.println(CARTS_URI + "/add?userId="+ id + "&quantity=" + quantity + "&name=" + item.getName() + "&price=" + item.getPrice() + "&stock=" + item.getStock() + "&id=" + item.getId());
     ResponseEntity<CartItem> response = restTemplate.postForEntity(CARTS_URI + "/add?userId="+ id + "&quantity=" + quantity + "&name=" + item.getName() + "&price=" + item.getPrice() + "&stock=" + item.getStock() + "&id=" + item.getId(), item, CartItem.class);
     System.out.println(response.getBody());
-    return "checkout";
+    return "redirect:/checkout";
   }
 
   // @GetMapping("/thankYou")

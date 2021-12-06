@@ -113,14 +113,12 @@
     </style>
     </head>
             <div class="topnav" >
-                <a href="#home">Home</a>
-                <a onclick="openLoginForm(); closeresetForm()">Login</a>
-                <a onclick="openresetForm(); closeLoginForm()">Reset Password</a>
-                <!-- <a href="#checkout">Checkout</a> -->
+              <a th:href = "@{/store}">Home</a>
+               
             </div>
             <div>
                 <h2 style = "text-align: center;">Welcome to the Mini Drug Store!</h2>
-                <p style = "text-align: center;">Successful purchase. Thanks for your business.</p>
+                <p style = "text-align: center;">Successful purchase. Thank you for your business.</p>
                 
             </div>
             <body class="w3-content" style="max-width:3600px">
@@ -143,65 +141,6 @@
           <div class="w3-hide-large" style="margin-top:83px"></div>
           
         
-            
-
-            <!-- Login Form -->
-            <div class="form-popup" id="loginForm">
-              <form action="#" th:action="@{/login}" th:object="${user}" class="form-container" method = "POST" >
-                <h1>Login</h1>
-
-                <label for="email"><b>Username</b></label>
-                <input type="text" placeholder="Enter Username" name="username" required th:field = "*{username}">
-
-                <label for="psw"><b>Password</b></label>
-                <input type="password" placeholder="Enter Password" name="psw" required th:field = "*{password}">
-
-                <!-- <button type="submit" class="btn">Login</button> -->
-                <input type="submit" name="action" id="login" value="Login" class="btn">
-                <button type="button" class="btn cancel" onclick="closeLoginForm()">Close</button>
-                
-            </form>
-            </div>
-
-            <!-- Reset Password Form -->
-            <div class="form-popup" id="resetForm">
-                <form action="#" class="form-container" method = "POST" >
-                    <!-- th:action="@{/login}" th:object="${user}" -->
-                  <h1>Reset Password</h1>
-  
-                  <label for="email"><b>Username</b></label>
-                  <input type="text" placeholder="Enter Username" name="username" required >
-                  <!-- th:field = "*{username}" -->
-                  <label for="psw"><b>Old Password</b></label>
-                  <input type="password" placeholder="Enter Old Password" name="psw" required >
-                  <!-- th:field = "*{password}" -->
-                  <label for="psw"><b>New Password</b></label>
-                  <input type="password" placeholder="Enter New Password" name="psw" required >
-                  <!-- <button type="submit" class="btn">Login</button> -->
-                  <input type="submit" name="action" id="reset" value="Reset Password" class="btn">
-                  <button type="button" class="btn cancel" onclick="closeresetForm()">Close</button>
-                  
-              </form>
-              </div>
-  
-           
-            <script>
-            function openLoginForm() {
-            document.getElementById("loginForm").style.display = "block";
-            }
-           
-            function closeLoginForm() {
-            document.getElementById("loginForm").style.display = "none";
-            }
-            function openresetForm() {
-            document.getElementById("resetForm").style.display = "block";
-            }
-           
-            function closeresetForm() {
-            document.getElementById("resetForm").style.display = "none";
-            }
-            </script>
-     
         
         </body>
 </html>
