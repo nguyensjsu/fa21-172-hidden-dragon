@@ -1,6 +1,17 @@
 version: "3"
 
 services:
+  rabbitmq:
+    image: rabbitmq:management
+    volumes:
+      - /tmp:/tmp
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - network
+    restart:
+      - always
   mysql:
     image: mysql:8.0
     volumes:
@@ -30,7 +41,7 @@ services:
   lb:
     image: eeacms/haproxy
     depends_on:
-    - hidden-dragon
+    - drugStore
     ports:
     - "80:5000"
     - "1936:1936"
