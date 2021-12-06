@@ -167,7 +167,7 @@
               <td th:text = "${item.stock}" th:name = "stock" />
               <input th:value="${item.stock}" th:name = "stock" hidden/>
               <input  type="number" placeholder="1" th:name = "quantity" />
-              <input  type="number" placeholder="1" th:name = "userId" />
+              <input th:value="${user}" th:name = "userId" hidden/>
               <input type="submit" name="action" value="Add to Cart" class="btn">
 
               </form>

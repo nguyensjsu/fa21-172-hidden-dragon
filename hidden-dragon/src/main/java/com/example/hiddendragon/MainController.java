@@ -59,14 +59,13 @@ public class MainController {
   }
 
   @PostMapping("/login")
-  public String login(@ModelAttribute User user ){
+  public String login(@ModelAttribute User user, Model model ){
     log.info("User " + user.getUsername() + " attemped login");
     System.out.println(user.getUsername() + " / " + user.getPassword());
 
     
     try {
       ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/login?username=" + user.getUsername() + "&password=" + user.getPassword(), user, User.class);
-
       return "redirect:/store";
     } catch(Exception e) {
       return "wrongUsePass"; 
@@ -94,8 +93,6 @@ public class MainController {
     System.out.println("Resetting password for" + username + " " + existingPassword + " new password: " + newPassword);
     try {
       ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/reset?username=" + username + "&existingPassword=" + existingPassword + "&newPassword=" + newPassword, null, User.class);
-
-      model.addAttribute("user", response.getBody());
       System.out.println(response.toString());
       return "after_reg";
     } catch(Exception e) {
@@ -121,6 +118,7 @@ public class MainController {
         items.add(storeItem);
         System.out.println(storeItem);
       }
+      model.addAttribute("user", 1);
       model.addAttribute("items", items);
       return "item";
     } catch(Exception e)  {
