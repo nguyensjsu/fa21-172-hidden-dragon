@@ -245,6 +245,8 @@ private  static Map<String,String> states = new HashMap<>(); static{
 //checkout page
   @GetMapping("/checkout")
   public String getCheckout(@ModelAttribute("checkout")DSCommand command, Model model){
+    ResponseEntity<Integer> response = restTemplate.getForEntity(CARTS_URI + "/total?userId=1", Integer.class);
+    model.addAttribute("total", response.getBody());
     return "checkout";
   }
 
@@ -341,7 +343,7 @@ private  static Map<String,String> states = new HashMap<>(); static{
         req.billToZipCode = command.zip() ;
         req.billToPhone = command.phone() ;
         req.billToEmail = command.email() ;
-        req.transactionAmount = "30.00" ;
+        req.transactionAmount = command.transactionAmount();
         req.transactionCurrency = "USD" ;
         req.cardNumber = command.cardnum() ;
         req.cardExpMonth = command.cardexpmon() ;
@@ -378,6 +380,7 @@ private  static Map<String,String> states = new HashMap<>(); static{
         return "checkout";
 
         }
+
   @PostMapping("/shopping")
   public String initiateCheckout(@ModelAttribute Item item, @RequestParam("userId") Integer id, @RequestParam("quantity") Integer quantity, Model model){
     System.out.println("Adding item to cart" + item.getName() + item.getId() + "/" + id + "/" + quantity);

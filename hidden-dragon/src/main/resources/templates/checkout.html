@@ -149,7 +149,7 @@
                   <p><a href="#">Product 3</a> <span class="price">$8</span></p>
                   <p><a href="#">Product 4</a> <span class="price">$2</span></p> -->
                   <hr>
-                  <p>Total <span class="price" style="color:black"><b ></b></span></p>
+                  <p>Total $<span th:text="${total}" class="price" style="color:black"><b ></b></span></p>
                 </div>
               </div>
             </div>
@@ -317,6 +317,7 @@
               <input type="text" id="email" name="email" placeholder="john@example.com"th:field= "*{email}">
               <label for="notes"> Notes</label>
               <input type="text" id="notes" name="notes" placeholder="special instructions"th:field= "*{notes}">
+              <input th:value="${total}" th:field = "*{transactionamount}" hidden/>
             </div>
 
           </div>

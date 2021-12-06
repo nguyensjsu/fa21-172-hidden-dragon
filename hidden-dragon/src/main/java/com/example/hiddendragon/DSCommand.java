@@ -97,6 +97,7 @@ class DSCommand {
     String cardnum(){return cardnum;}
     String cardexpmon(){return cardexpmon;}
     String cardexpyear(){return cardexpyear;}
+    String transactionamount(){return transactionamount;}
     String cardcvv(){return cardcvv;}
     String email(){return email;}
     String notes(){return notes;}
