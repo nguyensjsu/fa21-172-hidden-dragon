@@ -87,6 +87,11 @@ class DSCommand {
     public String toString() {
       return "Username: " + username + " / Password: " + password;
     }
+
+    public void setTransactionAmount(String total){
+        this.transactionamount = total;
+    }
+    
     String firstname(){return firstname;}
     String lastname(){return lastname;}
     String address(){return address;}

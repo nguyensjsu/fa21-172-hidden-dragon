@@ -293,6 +293,9 @@ private  static Map<String,String> states = new HashMap<>(); static{
     CyberSourceAPI.setMerchant(merchantId);
     CyberSourceAPI.debugConfig(); 
 
+    ResponseEntity<String> response = restTemplate.getForEntity(CARTS_URI + "/total?userId=1", String.class); //for total
+    command.setTransactionAmount(response.getBody());
+
     ErrorMessages msgs = new ErrorMessages();
     int min = 1239871;
     int max = 9999999;
@@ -384,7 +387,7 @@ private  static Map<String,String> states = new HashMap<>(); static{
 
         }
 
-  @PostMapping("/shopping")
+  @PostMapping("/store")
   public String initiateCheckout(@ModelAttribute Item item, @RequestParam("userId") Integer id, @RequestParam("quantity") Integer quantity, Model model){
     System.out.println("Adding item to cart" + item.getName() + item.getId() + "/" + id + "/" + quantity);
     System.out.println(CARTS_URI + "/add?userId="+ id + "&quantity=" + quantity + "&name=" + item.getName() + "&price=" + item.getPrice() + "&stock=" + item.getStock() + "&id=" + item.getId());
