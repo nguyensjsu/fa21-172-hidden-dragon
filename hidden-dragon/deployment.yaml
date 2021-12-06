@@ -16,7 +16,7 @@ spec:
         name: hidden-dragon
     spec:
       containers:
-      - name: hidden-dragon
-        image: brandoncheu/hidden-dragon
-        ports:
-        - containerPort: 8080
+        - name: hidden-dragon
+          image: elysianbeats/hidden-dragon
+          ports:
+            - containerPort: 8080
