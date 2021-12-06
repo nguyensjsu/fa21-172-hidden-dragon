@@ -44,7 +44,7 @@ import com.example.hiddendragon.*;
 @RequestMapping("/")
 public class MainController {
 
-<<<<<<< HEAD
+
   //for payments start
   @Value("${cybersource.apihost}") String apiHost;
   @Value("${cybersource.merchantkeyid}") String merchantKeyId;
@@ -147,15 +147,6 @@ private  static Map<String,String> states = new HashMap<>(); static{
 }
  //for payments end
 
-  //run on docker
-  private String USERS_URI = "http://localhost:8080/users";
-  private String CARTS_URI = "http://localhost:8080/carts";
-  private String ITEM_URI = "http://localhost:8080/items";
-
-  //homepage
-=======
-    @Autowired
-    private RestTemplate restTemplate;
 
     //run on docker
     private String USERS_URI = "http://localhost:8080/users";
@@ -163,7 +154,7 @@ private  static Map<String,String> states = new HashMap<>(); static{
     private String ITEM_URI = "http://localhost:8080/items";
     private String PAYMENT_URI = "http://localhost:8080/payments";
 
->>>>>>> 8774b50f13337b0a37e56058bfa0c48c7bdf014f
+
   @GetMapping
   public String home(@ModelAttribute User user, Model model) {
       System.out.println("Redirecting to home");
@@ -253,7 +244,6 @@ private  static Map<String,String> states = new HashMap<>(); static{
   }
 //checkout page
   @GetMapping("/checkout")
-<<<<<<< HEAD
   public String getCheckout(@ModelAttribute("checkout")DSCommand command, Model model){
     return "checkout";
   }
@@ -386,11 +376,8 @@ private  static Map<String,String> states = new HashMap<>(); static{
      
         // }
         return "checkout";
-=======
-  public String getCheckout(@ModelAttribute DSCommand command, Model model){ 
-    return "checkout";
-  }
 
+        }
   @PostMapping("/shopping")
   public String initiateCheckout(@ModelAttribute Item item, @RequestParam("userId") Integer id, @RequestParam("quantity") Integer quantity, Model model){
     System.out.println("Adding item to cart" + item.getName() + item.getId() + "/" + id + "/" + quantity);
@@ -424,9 +411,10 @@ private  static Map<String,String> states = new HashMap<>(); static{
       return "checkout";
     } catch(Exception e)  {
       return "error";
->>>>>>> 8774b50f13337b0a37e56058bfa0c48c7bdf014f
+
     }
 
 
   }
+}
 
