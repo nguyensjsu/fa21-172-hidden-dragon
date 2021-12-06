@@ -10,7 +10,6 @@ services:
       - "15672:15672"
     networks:
       - network
-    
   mysql:
     image: mysql:8.0
     volumes:
