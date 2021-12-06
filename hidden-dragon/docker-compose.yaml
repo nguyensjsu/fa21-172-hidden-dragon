@@ -13,7 +13,7 @@ services:
   mysql:
     image: mysql:8.0
     volumes:
-      - /tmp:/tmp
+      - /mySql:/mySql
     networks:
       - network   
     ports:
@@ -29,7 +29,7 @@ services:
     depends_on:
     - mysql    
     volumes:
-      - /tmp:/tmp
+      - /mySql:/mySql
     networks:
       - network   
     ports:
