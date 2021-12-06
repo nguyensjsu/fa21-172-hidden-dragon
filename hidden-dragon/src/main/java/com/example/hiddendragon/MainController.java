@@ -57,6 +57,8 @@ public class MainController {
   private RestTemplate restTemplate;
   @Autowired
   private DSRepository repo;
+  @Autowired
+  private RabbitMqSender sender;
 
   @Getter
   @Setter
@@ -213,7 +215,7 @@ private  static Map<String,String> states = new HashMap<>(); static{
   @GetMapping("/store")
   public String getStore(Model model){
     System.out.println("Accessing page store");
-
+    sender.send("test message - accessing store");
     try {
       ArrayList<Item> items = new ArrayList<Item>();
       ResponseEntity<ArrayList> response = restTemplate.getForEntity(ITEM_URI, ArrayList.class);
@@ -245,6 +247,8 @@ private  static Map<String,String> states = new HashMap<>(); static{
 //checkout page
   @GetMapping("/checkout")
   public String getCheckout(@ModelAttribute("checkout")DSCommand command, Model model){
+    ResponseEntity<Integer> response = restTemplate.getForEntity(CARTS_URI + "/total?userId=1", Integer.class);
+    model.addAttribute("total", response.getBody());
     return "checkout";
   }
 
@@ -341,7 +345,7 @@ private  static Map<String,String> states = new HashMap<>(); static{
         req.billToZipCode = command.zip() ;
         req.billToPhone = command.phone() ;
         req.billToEmail = command.email() ;
-        req.transactionAmount = "30.00" ;
+        req.transactionAmount = command.transactionamount();
         req.transactionCurrency = "USD" ;
         req.cardNumber = command.cardnum() ;
         req.cardExpMonth = command.cardexpmon() ;
@@ -358,8 +362,9 @@ private  static Map<String,String> states = new HashMap<>(); static{
         CaptureRequest capture = new CaptureRequest();
         CaptureResponse captureresponse = new CaptureResponse();
         if(auth){
+            sender.send("payment confirm");
             capture.paymentId = authRes.id;
-            capture.transactionAmount = "30.00";
+            capture.transactionAmount = command.transactionamount();
             capture.transactionCurrency = "USD";
             captureresponse  = api.capture(capture);
             captureValid = true;
@@ -378,6 +383,7 @@ private  static Map<String,String> states = new HashMap<>(); static{
         return "checkout";
 
         }
+
   @PostMapping("/shopping")
   public String initiateCheckout(@ModelAttribute Item item, @RequestParam("userId") Integer id, @RequestParam("quantity") Integer quantity, Model model){
     System.out.println("Adding item to cart" + item.getName() + item.getId() + "/" + id + "/" + quantity);
