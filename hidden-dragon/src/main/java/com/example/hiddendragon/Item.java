@@ -14,7 +14,6 @@ import lombok.RequiredArgsConstructor;
 @Table(name="item")
 public class Item {
   @Id
-  @GeneratedValue(strategy=GenerationType.AUTO)
   private Integer id;
 
   @Column(unique=true)
@@ -24,11 +23,10 @@ public class Item {
 
   private Integer stock;
 
+  private String image;
+
   public String toString() {
     return "Item name: " + name + " / Price: " + price + " / Remaining Stock: " + stock; 
   }
-
-  
-  
   
 }

@@ -89,7 +89,8 @@ public class CartController {
   }
   
   @PostMapping("/add")
-  ResponseEntity<Cart> addItem(@RequestParam("userId") Integer id, @RequestParam("quantity") Integer quantity, @ModelAttribute Item item, Model model) {
+  ResponseEntity<CartItem> addItem(@RequestParam("userId") Integer id, @RequestParam("quantity") Integer quantity, @ModelAttribute Item item, Model model) {
+    System.out.println("ok");
     Cart cart = cartRepository.findByUserId(id);
 
     HttpHeaders responseHeaders = new HttpHeaders();
@@ -99,9 +100,7 @@ public class CartController {
     ci.setCart(cart);
     ci.setQuantity(quantity);
     cartItemRepository.save(ci);
-
-    responseHeaders.set("status", HttpStatus.OK + "");
-    return new ResponseEntity(responseHeaders, HttpStatus.OK);
+   return new ResponseEntity(ci, HttpStatus.OK);
   }
 
 }

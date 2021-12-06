@@ -20,6 +20,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -48,6 +49,7 @@ public class MainController {
     private String USERS_URI = "http://localhost:8080/users";
     private String CARTS_URI = "http://localhost:8080/carts";
     private String ITEM_URI = "http://localhost:8080/items";
+    private String PAYMENT_URI = "http://localhost:8080/payments";
 
   @GetMapping
   public String home(@ModelAttribute User user, Model model) {
@@ -111,7 +113,7 @@ public class MainController {
       ArrayList<Item> items = new ArrayList<Item>();
       ResponseEntity<ArrayList> response = restTemplate.getForEntity(ITEM_URI, ArrayList.class);
       ObjectMapper mapper = new ObjectMapper();
-
+      System.out.println(response.getBody().toString());
       for(Object item: response.getBody()){
         Item storeItem = new Item();
 
@@ -135,13 +137,21 @@ public class MainController {
   }
 
   @GetMapping("/checkout")
-  public String getCheckout(){
+  public String getCheckout(@ModelAttribute DSCommand command, Model model){ 
     return "checkout";
+  }
 
+  @PostMapping("/shopping")
+  public String initiateCheckout(@ModelAttribute Item item, @RequestParam("userId") Integer id, @RequestParam("quantity") Integer quantity, Model model){
+    System.out.println("Adding item to cart" + item.getName() + item.getId() + "/" + id + "/" + quantity);
+    System.out.println(CARTS_URI + "/add?userId="+ id + "&quantity=" + quantity + "&name=" + item.getName() + "&price=" + item.getPrice() + "&stock=" + item.getStock() + "&id=" + item.getId());
+    ResponseEntity<CartItem> response = restTemplate.postForEntity(CARTS_URI + "/add?userId="+ id + "&quantity=" + quantity + "&name=" + item.getName() + "&price=" + item.getPrice() + "&stock=" + item.getStock() + "&id=" + item.getId(), item, CartItem.class);
+    System.out.println(response.getBody());
+    return "checkout";
   }
 
   @GetMapping("/shopping")
-  public String getCart(@RequestParam(value="userId") Integer id, Model model ){
+  public String getCart(@RequestParam("userId") Integer id, Model model ){
     System.out.println("User " + id + "accessing cart");
 
     try {
