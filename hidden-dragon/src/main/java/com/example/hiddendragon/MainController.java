@@ -57,13 +57,8 @@ public class MainController {
   private RestTemplate restTemplate;
   @Autowired
   private DSRepository repo;
-
-  private RabbitMqSender sender;
-
   @Autowired
-  public MainController(RabbitMqSender sender) {
-        this.sender = sender;
-  }
+  private RabbitMqSender sender;
 
   @Getter
   @Setter
@@ -220,7 +215,7 @@ private  static Map<String,String> states = new HashMap<>(); static{
   @GetMapping("/store")
   public String getStore(Model model){
     System.out.println("Accessing page store");
-
+    sender.send("test message - accessing store");
     try {
       ArrayList<Item> items = new ArrayList<Item>();
       ResponseEntity<ArrayList> response = restTemplate.getForEntity(ITEM_URI, ArrayList.class);

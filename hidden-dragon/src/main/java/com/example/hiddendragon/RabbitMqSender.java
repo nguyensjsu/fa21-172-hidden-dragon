@@ -10,18 +10,15 @@ import org.springframework.amqp.core.Queue;
 
 @Service
 public class RabbitMqSender {
-    private RabbitTemplate rabbitTemplate;
-
     @Autowired
-    public RabbitMqSender(RabbitTemplate rabbitTemplate) {
-        this.rabbitTemplate = rabbitTemplate;
-    }
+    private RabbitTemplate rabbitTemplate;
 
     @Autowired
     private Queue queue;
 
     public void send(String msg){
-        rabbitTemplate.convertAndSend( queue.getName(),msg);
+      System.out.println("MESSAGE SENT: " + msg);
+      rabbitTemplate.convertAndSend(queue.getName(),msg);
 
     }
 

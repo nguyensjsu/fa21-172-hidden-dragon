@@ -40,11 +40,6 @@ public class CartController {
   @Autowired
   private RabbitMqReceiver receiver;
 
-  @Bean
-  public RabbitMqReceiver receiver() {
-      return new RabbitMqReceiver();
-  }
-
   @GetMapping
   ResponseEntity<ArrayList<CartItem>> getItems(@RequestParam("userId") Integer id, Model model) {
     Cart cart = cartRepository.findByUserId(id);

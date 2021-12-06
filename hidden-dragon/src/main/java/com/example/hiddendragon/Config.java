@@ -9,6 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 @Configuration
 public class Config {
+    @Bean
+    public RabbitMqReceiver receiver() {
+        return new RabbitMqReceiver();
+    }
+
+    @Bean
+    public RabbitMqSender sender() {
+        return new RabbitMqSender();
+    }
 
     @Bean
     public Queue hello() {
