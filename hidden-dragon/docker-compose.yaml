@@ -13,7 +13,15 @@ services:
       - network
     environment:
       MYSQL_ROOT_PASSWORD: "cmpe172"
-    restart: always     
+    restart: always  
+
+  rabbitmq:
+  image: rabbitmq:management
+  ports:
+    - "5672:5672"
+    - "15672:15672"
+    
+         
   drugStore:
     image: hidden-dragon
     depends_on:
