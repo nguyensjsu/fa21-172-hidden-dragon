@@ -35,8 +35,8 @@
 - Redesigned the front end to guide the user through registering and logging into their account to see the products to aviod confusion
 - Added in the reset password into the template
 - Implemented redirecting links to each class in order to have correct url after navigating through links
-- 
+- Implemented the controller to support cybersource tested and succeeded in recieving test payment 
 
 **Challenges**
 
-- Some challenges I faced was the overall integration of the front end forms to their parts in the controllers in which we had only been exposed to one form to one controller method as seen in the spring-payments series of labs. This faced a challenge in which led to many bugs and the code crashing upon running gradle bootRun and running the applicaiton locally. This was solved with the help of my teammate Alan. I then was able to create a series of templates to helpguide the user through the registration and login process in order to see the products. 
+- Some challenges I faced was the overall integration of the front end forms to their parts in the controllers in which we had only been exposed to one form to one controller method as seen in the spring-payments series of labs. This faced a challenge in which led to many bugs and the code crashing upon running gradle bootRun and running the applicaiton locally. This was solved with the help of my teammate Alan. I then was able to create a series of templates to helpguide the user through the registration and login process in order to see the products. Another challenge I faced was the cybersource support in which I had found out that it needed the month of expiration to be in 01-12 format and also needed the card type.
