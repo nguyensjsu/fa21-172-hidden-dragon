@@ -367,6 +367,10 @@ private  static Map<String,String> states = new HashMap<>(); static{
         CaptureResponse captureresponse = new CaptureResponse();
         if(auth){
             sender.send("payment confirm");
+            ResponseEntity<String> clearResposne = restTemplate.getForEntity(CARTS_URI + "/clear?userId=1", String.class);
+            if(clearResposne.getStatusCode().equals(HttpStatus.OK)){
+              sender.send("cart cleared");
+            }
             capture.paymentId = authRes.id;
             capture.transactionAmount = command.transactionamount();
             capture.transactionCurrency = "USD";

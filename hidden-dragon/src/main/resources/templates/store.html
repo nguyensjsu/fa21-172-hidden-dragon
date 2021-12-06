@@ -150,9 +150,10 @@
           <div class="w3-container w3-text-grey" id="jeans">
             <p>4 items</p>
           </div>
-          <form action="#" th:action="@{/cart}" class="form-container" method = "POST" >
           <table>
             <tr th:each = "item: ${items}">
+              <form action="#" th:action="@{/cart}" class="form-container" method = "POST" >
+          
               <img alt="logo" th:src = "${'images/' + item.image}" style="width: 50%;">
             
               
