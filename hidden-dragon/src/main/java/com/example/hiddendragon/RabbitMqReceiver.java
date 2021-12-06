@@ -9,7 +9,7 @@ import org.springframework.amqp.core.Queue;
 import org.springframework.stereotype.Component;
 
 @Component
-public class RabbitMq {
+public class RabbitMqReceiver {
   private RabbitTemplate rabbitTemplate;
   private RestTemplate restTemplate;
 

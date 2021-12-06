@@ -38,11 +38,11 @@ public class CartController {
   private CartItemRepository cartItemRepository;
 
   @Autowired
-  private RabbitMq receiver;
+  private RabbitMqReceiver receiver;
 
   @Bean
-  public RabbitMq receiver() {
-      return new RabbitMq();
+  public RabbitMqReceiver receiver() {
+      return new RabbitMqReceiver();
   }
 
   @GetMapping

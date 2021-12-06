@@ -58,6 +58,13 @@ public class MainController {
   @Autowired
   private DSRepository repo;
 
+  private RabbitMqSender sender;
+
+  @Autowired
+  public MainController(RabbitMqSender sender) {
+        this.sender = sender;
+  }
+
   @Getter
   @Setter
   class  Message{
@@ -343,7 +350,7 @@ private  static Map<String,String> states = new HashMap<>(); static{
         req.billToZipCode = command.zip() ;
         req.billToPhone = command.phone() ;
         req.billToEmail = command.email() ;
-        req.transactionAmount = command.transactionAmount();
+        req.transactionAmount = command.transactionamount();
         req.transactionCurrency = "USD" ;
         req.cardNumber = command.cardnum() ;
         req.cardExpMonth = command.cardexpmon() ;
@@ -360,8 +367,9 @@ private  static Map<String,String> states = new HashMap<>(); static{
         CaptureRequest capture = new CaptureRequest();
         CaptureResponse captureresponse = new CaptureResponse();
         if(auth){
+            sender.send("payment confirm");
             capture.paymentId = authRes.id;
-            capture.transactionAmount = "30.00";
+            capture.transactionAmount = command.transactionamount();
             capture.transactionCurrency = "USD";
             captureresponse  = api.capture(capture);
             captureValid = true;
