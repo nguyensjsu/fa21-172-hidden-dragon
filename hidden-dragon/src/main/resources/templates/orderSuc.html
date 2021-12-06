@@ -113,17 +113,20 @@
     </style>
     </head>
             <div class="topnav" >
-                <a href="#home">Products</a>
-                <a href="#checkout" th:href = "@{/checkout}">Checkout</a>
+                <a href="#home">Home</a>
+                <a onclick="openLoginForm(); closeresetForm()">Login</a>
+                <a onclick="openresetForm(); closeLoginForm()">Reset Password</a>
+                <!-- <a href="#checkout">Checkout</a> -->
             </div>
             <div>
                 <h2 style = "text-align: center;">Welcome to the Mini Drug Store!</h2>
-                <p style = "text-align: center;">Please navigate through products and add to cart.</p>
+                <p style = "text-align: center;">Successful purchase. Thanks for your business.</p>
                 
             </div>
             <body class="w3-content" style="max-width:3600px">
 
-         -->
+      
+    
         <!-- Top menu on small screens -->
         <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
           <div class="w3-bar-item w3-padding-24 w3-wide">LOGO</div>
@@ -139,49 +142,67 @@
           <!-- Push down content on small screens -->
           <div class="w3-hide-large" style="margin-top:83px"></div>
           
-    
         
-          <!-- Image header -->
-          <div class="w3-display-container w3-container">
-            <img src="../static/images/Capture.PNG" alt="logo" th:src = "@{images/Capture.png}" style="width: 30%;">
-        
-          </div>
-        
-          <div class="w3-container w3-text-grey" id="jeans">
-            <p>4 items</p>
-          </div>
-          <form action="#" th:action="@{/shopping}" class="form-container" method = "POST" >
-          <table>
-            <tr th:each = "item: ${items}">
-              <img alt="logo" th:src = "${'images/' + item.image}" style="width: 50%;">
             
-              
-              <p th:text = "'Price: ' + '$' + ${item.price}" th:name = "price"></p>
-              <p th:text = "${item.name}" ></p>
-              
 
-              
-              <!-- <td th:text = "${item.stock}" th:name = "stock" /> -->
-              
-              <input th:value="${item.price}" th:name = "price" hidden/>
-              <input th:value="${item.stock}" th:name = "stock" hidden/>
-              <input th:value="${item.name}" th:name = "name" hidden/>
-              <input th:value="${item.id}" th:name = "id" hidden/>
-              <input th:value="${user}" th:name = "userId" hidden/>
-              
-              <input  type="number" placeholder="1" th:name = "quantity" />
-              
-            
-              <br>
+            <!-- Login Form -->
+            <div class="form-popup" id="loginForm">
+              <form action="#" th:action="@{/login}" th:object="${user}" class="form-container" method = "POST" >
+                <h1>Login</h1>
 
-              <input type="submit" name="action" value="Add to Cart" class="btn">
-        
-              <br>
-              
+                <label for="email"><b>Username</b></label>
+                <input type="text" placeholder="Enter Username" name="username" required th:field = "*{username}">
 
+                <label for="psw"><b>Password</b></label>
+                <input type="password" placeholder="Enter Password" name="psw" required th:field = "*{password}">
+
+                <!-- <button type="submit" class="btn">Login</button> -->
+                <input type="submit" name="action" id="login" value="Login" class="btn">
+                <button type="button" class="btn cancel" onclick="closeLoginForm()">Close</button>
+                
+            </form>
+            </div>
+
+            <!-- Reset Password Form -->
+            <div class="form-popup" id="resetForm">
+                <form action="#" class="form-container" method = "POST" >
+                    <!-- th:action="@{/login}" th:object="${user}" -->
+                  <h1>Reset Password</h1>
+  
+                  <label for="email"><b>Username</b></label>
+                  <input type="text" placeholder="Enter Username" name="username" required >
+                  <!-- th:field = "*{username}" -->
+                  <label for="psw"><b>Old Password</b></label>
+                  <input type="password" placeholder="Enter Old Password" name="psw" required >
+                  <!-- th:field = "*{password}" -->
+                  <label for="psw"><b>New Password</b></label>
+                  <input type="password" placeholder="Enter New Password" name="psw" required >
+                  <!-- <button type="submit" class="btn">Login</button> -->
+                  <input type="submit" name="action" id="reset" value="Reset Password" class="btn">
+                  <button type="button" class="btn cancel" onclick="closeresetForm()">Close</button>
+                  
               </form>
-            </tr>
-          </table>
+              </div>
+  
+           
+            <script>
+            function openLoginForm() {
+            document.getElementById("loginForm").style.display = "block";
+            }
+           
+            function closeLoginForm() {
+            document.getElementById("loginForm").style.display = "none";
+            }
+            function openresetForm() {
+            document.getElementById("resetForm").style.display = "block";
+            }
+           
+            function closeresetForm() {
+            document.getElementById("resetForm").style.display = "none";
+            }
+            </script>
+     
+        
         </body>
 </html>
     

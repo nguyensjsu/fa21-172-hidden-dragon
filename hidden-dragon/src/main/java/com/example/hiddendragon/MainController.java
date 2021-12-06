@@ -161,7 +161,7 @@ private  static Map<String,String> states = new HashMap<>(); static{
   public String home(@ModelAttribute User user, Model model) {
       System.out.println("Redirecting to home");
       
-      return "drugstore";
+      return "home";
   }
 
   //login
@@ -190,7 +190,7 @@ private  static Map<String,String> states = new HashMap<>(); static{
     try {
       ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/register?username=" + user.getUsername() + "&password=" + user.getPassword(), user, User.class);
       
-      return "after_reg";
+      return "regSuc";
     } catch(Exception e) {
       return "wrongDupAcc";
     }
@@ -204,7 +204,7 @@ private  static Map<String,String> states = new HashMap<>(); static{
     try {
       ResponseEntity<User> response = restTemplate.postForEntity(USERS_URI + "/reset?username=" + username + "&existingPassword=" + existingPassword + "&newPassword=" + newPassword, null, User.class);
       System.out.println(response.toString());
-      return "after_reg";
+      return "regSuc";
     } catch(Exception e) {
       return "error";
     }
@@ -230,7 +230,7 @@ private  static Map<String,String> states = new HashMap<>(); static{
       }
       model.addAttribute("user", 1);
       model.addAttribute("items", items);
-      return "item";
+      return "store";
     } catch(Exception e)  {
       return "error";
     }
@@ -244,7 +244,7 @@ private  static Map<String,String> states = new HashMap<>(); static{
     return "error";
 
   }
-//checkout page
+  //checkout page
   @GetMapping("/checkout")
   public String getCheckout(@ModelAttribute("checkout")DSCommand command, Model model){
     ResponseEntity<Integer> response = restTemplate.getForEntity(CARTS_URI + "/total?userId=1", Integer.class);
@@ -252,34 +252,34 @@ private  static Map<String,String> states = new HashMap<>(); static{
     return "checkout";
   }
 
-  // //possible checkout?
-  // @GetMapping("/shopping")
-  // public String getCart(@RequestParam(value="userId") Integer id, Model model ){
-  //   System.out.println("User " + id + "accessing cart");
+  // cart page
+  @GetMapping("/cart")
+  public String getCart(Model model){
+    Integer id = 1;
 
-  //   try {
-  //     ArrayList<CartItem> items = new ArrayList<CartItem>();
-  //     ResponseEntity<ArrayList> response = restTemplate.getForEntity(CARTS_URI, ArrayList.class, id);
-  //     ResponseEntity<Integer> totalResponse = restTemplate.getForEntity(CARTS_URI + "/total?=" + id, Integer.class, id);
-  //     ObjectMapper mapper = new ObjectMapper();
+    try {
+      ArrayList<CartItem> items = new ArrayList<CartItem>();
+      ResponseEntity<ArrayList> response = restTemplate.getForEntity(CARTS_URI, ArrayList.class, id);
+      ResponseEntity<Integer> totalResponse = restTemplate.getForEntity(CARTS_URI + "/total?=" + id, Integer.class, id);
+      ObjectMapper mapper = new ObjectMapper();
 
-  //     for(Object item: response.getBody()){
-  //       CartItem cartItem = new CartItem();
+      for(Object item: response.getBody()){
+        CartItem cartItem = new CartItem();
 
-  //       cartItem = mapper.convertValue(cartItem, CartItem.class);
-  //       items.add(cartItem);
-  //       System.out.println(cartItem);
-  //     }
+        cartItem = mapper.convertValue(cartItem, CartItem.class);
+        items.add(cartItem);
+        System.out.println(cartItem);
+      }
 
-  //     model.addAttribute("items", items);
-  //     model.addAttribute("total", totalResponse.getBody());
+      model.addAttribute("items", items);
+      model.addAttribute("total", totalResponse.getBody());
 
-  //     return "checkout";
-  //   } catch(Exception e)  {
-  //     return "error";
-  //   }
+      return "cart";
+    } catch(Exception e)  {
+      return "error";
+    }
 
-  // }
+  }
 
   @PostMapping("/checkout")
     public String postAction(@Valid @ModelAttribute("checkout") DSCommand command,  
@@ -383,11 +383,11 @@ private  static Map<String,String> states = new HashMap<>(); static{
         //     command.setCaptureStatus (captureresponse.status);
      
         // }
-        return "checkout";
+        return "orderSuc";
 
         }
 
-  @PostMapping("/store")
+  @PostMapping("/cart")
   public String initiateCheckout(@ModelAttribute Item item, @RequestParam("userId") Integer id, @RequestParam("quantity") Integer quantity, Model model){
     System.out.println("Adding item to cart" + item.getName() + item.getId() + "/" + id + "/" + quantity);
     System.out.println(CARTS_URI + "/add?userId="+ id + "&quantity=" + quantity + "&name=" + item.getName() + "&price=" + item.getPrice() + "&stock=" + item.getStock() + "&id=" + item.getId());
@@ -396,7 +396,7 @@ private  static Map<String,String> states = new HashMap<>(); static{
     return "checkout";
   }
 
-  @GetMapping("/shopping")
+  @GetMapping("/cart")
   public String getCart(@RequestParam("userId") Integer id, Model model ){
     System.out.println("User " + id + "accessing cart");
 
