@@ -123,7 +123,7 @@
             </div>
             <body class="w3-content" style="max-width:3600px">
 
-         -->
+     
         <!-- Top menu on small screens -->
         <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
           <div class="w3-bar-item w3-padding-24 w3-wide">LOGO</div>
@@ -154,7 +154,7 @@
             <tr th:each = "item: ${items}">
               <form action="#" th:action="@{/cart}" class="form-container" method = "POST" >
           
-              <img alt="logo" th:src = "${'images/' + item.image}" style="width: 50%;">
+              <img alt="logo" th:src = "${'images/' + item.image}" style="width: 15%;">
             
               
               <p th:text = "'Price: ' + '$' + ${item.price}" th:name = "price"></p>
