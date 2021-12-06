@@ -1,145 +1,135 @@
+
+<!-- 
+    https://codepen.io/quinlo/pen/YONMEa 
+    https://www.w3schools.com/howto/howto_css_checkout_form.asp
+    https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_labels
+-->
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" 
       xmlns:th="http://www.thymeleaf.org">
 
 <html>
-    <head>
-        <title>Mini Drug Store</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-        <!-- <link rel="stylesheet" th:href="@{/styles.css}" /> -->
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        <style>
-            body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            }
+<head>
+    <title>Mini Drug Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+    <link rel="stylesheet" th:href="@{/styles.css}" />
+    <style>
+        body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        }
 
-            .topnav {
-            overflow: hidden;
-            background-color: #333;
-            }
+        .topnav {
+        overflow: hidden;
+        background-color: #333;
+        }
 
-            .topnav a {
-            float: left;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-            font-size: 17px;
-            }
+        .topnav a {
+        float: left;
+        color: #f2f2f2;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+        font-size: 17px;
+        }
 
-            .topnav a:hover {
-            background-color: #ddd;
-            color: black;
-            }
+        .topnav a:hover {
+        background-color: #ddd;
+        color: black;
+        }
 
-            .topnav a.active {
-            background-color: #04AA6D;
-            color: white;
-            }
-            .w3-sidebar a {font-family: "Roboto", sans-serif}
-            body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
-            .open-button {
-            background-color: #555;
-            color: white;
-            padding: 16px 20px;
-            border: none;
-            cursor: pointer;
-            opacity: 0.8;
-            position: fixed;
-            bottom: 23px;
-            right: 28px;
-            width: 280px;
-            }
+        .topnav a.active {
+        background-color: #04AA6D;
+        color: white;
+        }
+        .w3-sidebar a {font-family: "Roboto", sans-serif}
+        body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
+        .open-button {
+        background-color: #555;
+        color: white;
+        padding: 16px 20px;
+        border: none;
+        cursor: pointer;
+        opacity: 0.8;
+        position: fixed;
+        bottom: 23px;
+        right: 28px;
+        width: 280px;
+        }
 
-            /* The popup form - hidden by default */
-            .form-popup {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            right: 15px;
-            border: 3px solid #f1f1f1;
-            z-index: 9;
-            }
+        /* The popup form - hidden by default */
+        .form-popup {
+        display: none;
+        position: fixed;
+        bottom: 0;
+        right: 15px;
+        border: 3px solid #f1f1f1;
+        z-index: 9;
+        }
 
-            /* Add styles to the form container */
-            .form-container {
-            max-width: 300px;
-            padding: 10px;
-            background-color: white;
-            }
+        /* Add styles to the form container */
+        .form-container {
+        max-width: 300px;
+        padding: 10px;
+        background-color: white;
+        }
 
-            /* Full-width input fields */
-            .form-container input[type=text], .form-container input[type=password] {
-            width: 100%;
-            padding: 15px;
-            margin: 5px 0 22px 0;
-            border: none;
-            background: #f1f1f1;
-            }
+        /* Full-width input fields */
+        .form-container input[type=text], .form-container input[type=password] {
+        width: 100%;
+        padding: 15px;
+        margin: 5px 0 22px 0;
+        border: none;
+        background: #f1f1f1;
+        }
 
-            /* When the inputs get focus, do something */
-            .form-container input[type=text]:focus, .form-container input[type=password]:focus {
-            background-color: #ddd;
-            outline: none;
-            }
+        /* When the inputs get focus, do something */
+        .form-container input[type=text]:focus, .form-container input[type=password]:focus {
+        background-color: #ddd;
+        outline: none;
+        }
 
-            /* Set a style for the submit/login button */
-            .form-container .btn {
-            background-color: #04AA6D;
-            color: white;
-            padding: 16px 20px;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            margin-bottom:10px;
-            opacity: 0.8;
-            }
+        /* Set a style for the submit/login button */
+        .form-container .btn {
+        background-color: #04AA6D;
+        color: white;
+        padding: 16px 20px;
+        border: none;
+        cursor: pointer;
+        width: 100%;
+        margin-bottom:10px;
+        opacity: 0.8;
+        }
 
-            /* Add a red background color to the cancel button */
-            .form-container .cancel {
-            background-color: red;
-            }
+        /* Add a red background color to the cancel button */
+        .form-container .cancel {
+        background-color: red;
+        }
 
-            /* Add some hover effects to buttons */
-            .form-container .btn:hover, .open-button:hover {
-            opacity: 1;
-            }
-    </style>
-    </head>
-            <div class="topnav" >
-                <a href="#home">Home</a>
+        /* Add some hover effects to buttons */
+        .form-container .btn:hover, .open-button:hover {
+        opacity: 1;
+        }
+</style>
+</head>
+<div class="topnav" >
+    <a href="#home">Home</a>
+    <!-- <a onclick="openLoginForm(); closeRegisterForm(); closeresetForm()">Login</a>
+    <a onclick="openRegisterForm(); closeLoginForm(); closeresetForm()">Register</a>
+    <a onclick="openresetForm(); closeRegisterForm(); closeLoginForm()">Reset Password</a> -->
+    <a href="#checkout">Checkout</a>
+</div>
+<div>
+    <h2 style = "text-align: center;">Welcome to the Mini Drug Store!</h2>
+    <p style = "text-align: center;">Please fill out the form to process your order.</p>
+    
+</div>
+<body class="w3-content" style="max-width:3600px">
 
-                <a href="#checkout">Checkout</a>
-            </div>
-            <div>
-                <h2 style = "text-align: center;">Welcome to the Mini Drug Store!</h2>
-                <p style = "text-align: center;">Please fill out the form to purchase the products added to the cart. </p>
-                
-            </div>
-            <body class="w3-content" style="max-width:3600px">
+<body>
 
-
-        <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
-          <div class="w3-bar-item w3-padding-24 w3-wide">LOGO</div>
-          <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
-        </header>
-        
-        <!-- Overlay effect when opening sidebar on small screens -->
-        <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
-        
-        <!-- !PAGE CONTENT! -->
-        <div class="w3-main" style="margin-left:250px">
-        
-          <!-- Push down content on small screens -->
-          <div class="w3-hide-large" style="margin-top:83px"></div>
-          
-        <!-- FORM SECTION -->
+<!-- FORM SECTION -->
 <form name="form" th:object="${checkout}" method="post" action="">
 
     <table style="width:100%">
@@ -154,18 +144,12 @@
                       <b>4</b>
                     </span>
                   </h4>
-                  <!-- <p><a href="#">Mask</a> <span class="price">$1</span></p>
-                  <p><a href="#">Advil</a> <span class="price">$5</span></p>
-                  <p><a href="#">Bandaid</a> <span class="price">$8</span></p>
-                  <p><a href="#">Neosporin</a> <span class="price">$2</span></p> -->
-                  <table>
-                      <tr th:each = "item: ${items}">
-                        <td th:text = "${item.item}" />
-                          
-                      </tr>
-                  </table>
+                  <!-- <p><a href="#">Product 1</a> <span class="price">$15</span></p>
+                  <p><a href="#">Product 2</a> <span class="price">$5</span></p>
+                  <p><a href="#">Product 3</a> <span class="price">$8</span></p>
+                  <p><a href="#">Product 4</a> <span class="price">$2</span></p> -->
                   <hr>
-                  <p>Total <span class="price" style="color:black"><b th:text = "${total}"></b></span></p>
+                  <p>Total <span class="price" style="color:black"><b ></b></span></p>
                 </div>
               </div>
             </div>
@@ -288,13 +272,10 @@
               <br>
               <label for="lname"><i class="fa fa-user"></i> Last Name</label>
               <input type="text" id="lname" name="lirstname" placeholder="Doe"  th:field="*{lastname}" />
-              <br>
               <label for="adr"><i class="fa fa-address-card-o"></i> Address</label>
               <input type="text" id="adr" name="address" placeholder="542 W. 15th Street" th:field= "*{address}">
-              <br>
               <label for="city"><i class="fa fa-institution"></i> City</label>
               <input type="text" id="city" name="city" placeholder="New York"th:field= "*{city}">
-              <br>
               <div class="row">
                 <div class="col-50">
                   <label for="state">State</label>
@@ -320,13 +301,12 @@
               </div>
               <label for="ccnum">Credit card number</label>
               <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444"th:field= "*{cardnum}">
-              <br>
               <label for="expmonth">Exp Month</label>
-              <input type="text" id="expmonth" name="expmonth" placeholder="September"th:field= "*{cardexpmon}">
+              <input type="text" id="expmonth" name="expmonth" placeholder="01"th:field= "*{cardexpmon}">
               <div class="row">
                 <div class="col-50">
                   <label for="expyear">Exp Year</label>
-                  <input type="text" id="expyear" name="expyear" placeholder="2018"th:field= "*{cardexpyear}">
+                  <input type="text" id="expyear" name="expyear" placeholder="2021"th:field= "*{cardexpyear}">
                 </div>
                 <div class="col-50">
                   <label for="cvv">CVV</label>
@@ -335,7 +315,6 @@
               </div>
               <label for="email"><i class="fa fa-envelope"></i> Email</label>
               <input type="text" id="email" name="email" placeholder="john@example.com"th:field= "*{email}">
-              <br>
               <label for="notes"> Notes</label>
               <input type="text" id="notes" name="notes" placeholder="special instructions"th:field= "*{notes}">
             </div>
@@ -346,13 +325,13 @@
           <br/>
           <br/>
           <br/>
-          <!-- <div class="message">
+          <div class="message">
           <span th:text="${message}" />
           </div>
           <div th:if="${not#lists.isEmpty(messages)}">
             <div class="messages">
               <ul th:each="m : ${messages}">
-                  <li th:text="${m.msg}" /> -->
+                  <li th:text="${m.msg}" />
               </ul>
             </div>
             </div>
@@ -363,9 +342,10 @@
 </div>
 
 </form>
+<!-- END FORM SECTION -->
 
-     
-        
-        </body>
+<br/>
+
+</body>
 </html>
-    
+

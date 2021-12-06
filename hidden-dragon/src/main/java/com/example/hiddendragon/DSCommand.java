@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Column;
 
 @Entity
 @Table(name = "drugStore_command")
@@ -28,12 +29,34 @@ class DSCommand {
     private String cardcvv;
     private String address;
 
+
+    private String cardType;
+
+    // for executing payment through CyberSource
+
+    private String ordernumber;
+  
+    private String transactionamount;
+  
+    private String transactioncurrency;
+ 
+    private String authid;
+ 
+    private String authstatus;
+
+    private String captureid;
+  
+    private String capturestatus;
+ 
+    private String cost;
     private Integer user_id;
 
     private String username;
   
     private String password;
   
+   
+
     public Integer getId() {
       return user_id;
     }
@@ -45,8 +68,14 @@ class DSCommand {
     public void setUsername(String username) {
       this.username = username;
     }
+    
+    public String getCardType(){
+        return cardType;
+    }
   
-  
+    public void setCardType(String cardType){
+        this.cardType = cardType;
+    }
     public String getPassword() {
       return password;
     }
@@ -71,4 +100,5 @@ class DSCommand {
     String cardcvv(){return cardcvv;}
     String email(){return email;}
     String notes(){return notes;}
+    
 }
