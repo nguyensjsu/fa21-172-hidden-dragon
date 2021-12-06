@@ -12,6 +12,12 @@ USE `cmpe172` ;
 -- -----------------------------------------------------
 -- Table `cmpe172`.`person`
 -- -----------------------------------------------------
+DROP TABLE IF EXISTS `cmpe172`.`cart` ;
+DROP TABLE IF EXISTS `cmpe172`.`cart_item` ;
+DROP TABLE IF EXISTS `cmpe172`.`drug_store_command` ;
+DROP TABLE IF EXISTS `cmpe172`.`hibernate_sequence` ;
+DROP TABLE IF EXISTS `cmpe172`.`item` ;
+DROP TABLE IF EXISTS `cmpe172`.`user` ;
 
 
 create table cart (id integer not null, user_id integer, primary key (id)) engine=InnoDB;
