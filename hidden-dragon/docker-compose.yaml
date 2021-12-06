@@ -35,6 +35,7 @@ services:
       - 8080    
     environment:
       MYSQL_HOST: "mysql"
+      RABBIT_HOST: "rabbitmq"
     restart: always     
   lb:
     image: eeacms/haproxy
