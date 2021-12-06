@@ -150,65 +150,38 @@
           <div class="w3-container w3-text-grey" id="jeans">
             <p>4 items</p>
           </div>
-        
+          <form action="#" th:action="@{/shopping}" class="form-container" method = "POST" >
           <table>
             <tr th:each = "item: ${items}">
-              <form action="#" th:action="@{/shopping}" class="form-container" method = "POST" >
+              <img alt="logo" th:src = "${'images/' + item.image}" style="width: 50%;">
             
-              <td th:text = "${item.name + 'id' + item.id}" />
+              
+              <p th:text = "'Price: ' + '$' + ${item.price}" th:name = "price"></p>
+              <p th:text = "${item.name}" ></p>
+              
+
+              
+              <!-- <td th:text = "${item.stock}" th:name = "stock" /> -->
+              
+              <input th:value="${item.price}" th:name = "price" hidden/>
+              <input th:value="${item.stock}" th:name = "stock" hidden/>
               <input th:value="${item.name}" th:name = "name" hidden/>
               <input th:value="${item.id}" th:name = "id" hidden/>
-              <img alt="logo" th:src = "${'images/' + item.image}" style="width: 30%;">
+              <input th:value="${user}" th:name = "userId" hidden/>
+              
+              <input  type="number" placeholder="1" th:name = "quantity" />
+              
+            
+              <br>
+
+              <input type="submit" name="action" value="Add to Cart" class="btn">
         
               <br>
-              <td>$</td>
-              <td th:text = "${item.price}" th:name = "price" />
-              <input th:value="${item.price}" th:name = "price" hidden/>
-              <td th:text = "${item.stock}" th:name = "stock" />
-              <input th:value="${item.stock}" th:name = "stock" hidden/>
-              <input  type="number" placeholder="1" th:name = "quantity" />
-              <input th:value="${user}" th:name = "userId" hidden/>
-              <input type="submit" name="action" value="Add to Cart" class="btn">
+              
 
               </form>
             </tr>
           </table>
-
-          <!-- Product grid -->
-          <div class="w3-row ">
-            <div class="w3-col l3 s6">
-              <div class="w3-container">
-                <img src="../static/images/advil.png" th:src = "@{images/advil.png}" style="width:50%">
-                <p>Advil<br><b>$3.50</b></p>
-                
-                <input type="submit" name="action" id="process-payment" value="Add to Cart" class="btn" >
-              </div>
-              <br>
-        
-            <div class="w3-container">
-                <img src="../static/images/Bandaid.jpg" th:src = "@{images/Bandaid.jpg}" style="width:50%">
-                <p>BandAid<br><b>$2.00</b></p>
-                <input type="submit" name="action" id="process-payment" value="Add to Cart" class="btn">
-            </div>
-            <br>
-            <div class="w3-container">
-                <img src="../static/images/neo.jpg" th:src = "@{images/neo.jpg}" style="width:50%">
-                <p>Neosporin<br><b>$4.00</b></p>
-                <input type="submit" name="action" id="process-payment" value="Add to Cart" class="btn">
-            </div>\
-            <br>
-            <div class="w3-container">
-              <img src="../static/images/mask.jpg" th:src = "@{images/mask.jpg}" style="width:50%">
-              <p>Mask<br><b>$1.00</b></p>
-              <input type="submit" name="action" id="process-payment" value="Add to Cart" class="btn">
-          </div>
-          <br>
-            </div>
-            
-
-        
-           
-        
         </body>
 </html>
     
