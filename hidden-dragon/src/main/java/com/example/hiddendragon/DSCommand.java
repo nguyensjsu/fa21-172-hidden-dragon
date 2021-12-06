@@ -91,7 +91,11 @@ class DSCommand {
     public void setTransactionAmount(String total){
         this.transactionamount = total;
     }
-    
+
+    public void setOrderNumber(String order){
+        this.ordernumber = order;
+    }
+
     String firstname(){return firstname;}
     String lastname(){return lastname;}
     String address(){return address;}
@@ -106,5 +110,6 @@ class DSCommand {
     String cardcvv(){return cardcvv;}
     String email(){return email;}
     String notes(){return notes;}
+    String orderNum(){return ordernumber;}
     
 }

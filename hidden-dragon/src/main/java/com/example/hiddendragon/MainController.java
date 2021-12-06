@@ -295,12 +295,13 @@ private  static Map<String,String> states = new HashMap<>(); static{
 
     ResponseEntity<String> response = restTemplate.getForEntity(CARTS_URI + "/total?userId=1", String.class); //for total
     command.setTransactionAmount(response.getBody());
-
+    
     ErrorMessages msgs = new ErrorMessages();
     int min = 1239871;
     int max = 9999999;
     int random = (int)Math.floor(Math.random()*(max-min+1)+min);
     String orderNum = String.valueOf(random);
+    command.setOrderNumber(orderNum);
     boolean hasErrors = false;
     if(command.firstname().equals("")){hasErrors = true; msgs.add("First Name Required.");}
     if(command.lastname().equals("")){hasErrors = true; msgs.add("Last Name Required.");}
@@ -387,7 +388,7 @@ private  static Map<String,String> states = new HashMap<>(); static{
 
         }
 
-  @PostMapping("/store")
+  @PostMapping("/shopping")
   public String initiateCheckout(@ModelAttribute Item item, @RequestParam("userId") Integer id, @RequestParam("quantity") Integer quantity, Model model){
     System.out.println("Adding item to cart" + item.getName() + item.getId() + "/" + id + "/" + quantity);
     System.out.println(CARTS_URI + "/add?userId="+ id + "&quantity=" + quantity + "&name=" + item.getName() + "&price=" + item.getPrice() + "&stock=" + item.getStock() + "&id=" + item.getId());
@@ -425,5 +426,11 @@ private  static Map<String,String> states = new HashMap<>(); static{
 
 
   }
+
+  // @GetMapping("/thankYou")
+  // public String getOrderNum(@ModelAttribute("thankYou")DSCommand command, Model model){
+  //   model.addAttribute("orderNum", command.getOrdernumber());
+  //   return "thankYou";
+  // }
 }
 

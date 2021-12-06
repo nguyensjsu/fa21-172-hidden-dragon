@@ -114,7 +114,7 @@
 </style>
 </head>
 <div class="topnav" >
-    <a href="#home">Home</a>
+    <a href="#home" th:href = "@{/store}">Home</a>
     <!-- <a onclick="openLoginForm(); closeRegisterForm(); closeresetForm()">Login</a>
     <a onclick="openRegisterForm(); closeLoginForm(); closeresetForm()">Register</a>
     <a onclick="openresetForm(); closeRegisterForm(); closeLoginForm()">Reset Password</a> -->
@@ -141,13 +141,10 @@
                   <h4>Cart
                     <span class="price" style="color:black">
                       <i class="fa fa-shopping-cart"></i>
-                      <b>4</b>
+                    
                     </span>
                   </h4>
-                  <!-- <p><a href="#">Product 1</a> <span class="price">$15</span></p>
-                  <p><a href="#">Product 2</a> <span class="price">$5</span></p>
-                  <p><a href="#">Product 3</a> <span class="price">$8</span></p>
-                  <p><a href="#">Product 4</a> <span class="price">$2</span></p> -->
+                
                   <hr>
                   <p>Total $<span th:text="${total}" class="price" style="color:black"><b ></b></span></p>
                 </div>
