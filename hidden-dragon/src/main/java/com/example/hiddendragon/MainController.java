@@ -398,36 +398,6 @@ private  static Map<String,String> states = new HashMap<>(); static{
     return "checkout";
   }
 
-  @GetMapping("/cart")
-  public String getCart(@RequestParam("userId") Integer id, Model model ){
-    System.out.println("User " + id + "accessing cart");
-
-    try {
-      ArrayList<CartItem> items = new ArrayList<CartItem>();
-      ResponseEntity<ArrayList> response = restTemplate.getForEntity(CARTS_URI, ArrayList.class, id);
-      ResponseEntity<Integer> totalResponse = restTemplate.getForEntity(CARTS_URI + "/total?=" + id, Integer.class, id);
-      ObjectMapper mapper = new ObjectMapper();
-
-      for(Object item: response.getBody()){
-        CartItem cartItem = new CartItem();
-
-        cartItem = mapper.convertValue(cartItem, CartItem.class);
-        items.add(cartItem);
-        System.out.println(cartItem);
-      }
-
-      model.addAttribute("items", items);
-      model.addAttribute("total", totalResponse.getBody());
-
-      return "checkout";
-    } catch(Exception e)  {
-      return "error";
-
-    }
-
-
-  }
-
   // @GetMapping("/thankYou")
   // public String getOrderNum(@ModelAttribute("thankYou")DSCommand command, Model model){
   //   model.addAttribute("orderNum", command.getOrdernumber());
