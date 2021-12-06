@@ -3,17 +3,17 @@
 
 -- Item
 
-insert into item ( name,  price, stock ) 
-values	('Mask', 1.00, 10) ;
+insert into item ( id, name,  price, stock, image ) 
+values	(1,'Mask', 1.00, 10, "mask.jpg") ;
 
-insert into item ( name,  price, stock ) 
-values	('Bandaid', 2.00, 50) ;
+insert into item ( id, name,  price, stock, image ) 
+values	(2,'Bandaid', 2.00, 50, "Bandaid.jpg") ;
 
-insert into item ( name,  price, stock ) 
-values	('Advil', 3.50, 150) ;
+insert into item (id,  name,  price, stock, image ) 
+values	(3,'Advil', 3.50, 150, "advil.png") ;
 
-insert into item ( name,  price, stock ) 
-values	('Neosporin', 4.00, 75) ;
+insert into item ( id, name,  price, stock, image ) 
+values	(4,'Neosporin', 4.00, 75, "neo.jpg") ;
 
 -- User
 

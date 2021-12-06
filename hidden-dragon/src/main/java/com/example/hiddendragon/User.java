@@ -23,7 +23,7 @@ public class User {
   private String password;
 
   public String toString() {
-    return "Username: " + username + " / Password: " + password;
+    return "ID:" + id + " " + "Username:"  + username + " / Password: " + password;
   }
   
   

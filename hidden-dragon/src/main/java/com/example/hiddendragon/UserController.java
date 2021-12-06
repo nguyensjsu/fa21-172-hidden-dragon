@@ -87,8 +87,6 @@ public class UserController {
 
     HttpHeaders responseHeaders = new HttpHeaders();
 
-    model.addAttribute("user", user);
-
     User newUser = userRepository.findByUsernameAndPassword(user.getUsername(), user.getPassword());
     // if(u.isEmpty()){
     //   return "wrongUsePass";
@@ -97,10 +95,10 @@ public class UserController {
     // }
     if(newUser != null){    
       System.out.println("Signed in");
-      return new ResponseEntity(user, HttpStatus.OK);  
+      return new ResponseEntity(newUser, HttpStatus.OK);  
     } else {
       System.out.println("Wrong password or nonexistent user");
-      return new ResponseEntity(user, HttpStatus.UNAUTHORIZED);
+      return new ResponseEntity(newUser, HttpStatus.UNAUTHORIZED);
     }
    
   }
