@@ -7,9 +7,22 @@
 
 **Accomplishments**
 
-- **[1.0.8]** Went through the step by step process of creating a docker-compose file and building the image and pushing the image to docker. I then used kompose convert to create service and deployment yamls. I had to manually modify a few of them to get everything working.
+- **[1.0.8]** Went through the step by step process of creating a docker-compose file and building the image and pushing the image to docker. I then used kompose convert to create service and deployment yamls. I had to manually modify a few of them (convert Docker to LoadBalancer) to get everything working.
 - **[1.0.7]** Added new image field to Items and relayed data to front end to be able to query for images.
 - **[1.0.6]** I isolated Rest controllers from the MainController and removed unnecessary code like Exceptions and ModelAssemblers. I also setup the cart API and relayed data to the main controller and to Thymeleaf frontend. 
+
+**Challenges**
+
+- One of the biggest challenges I had was during the K8 deployment of our application. Prior to the deployment, I had seeded the data manually using docker exec, but when it came time for deployment the data wasn't being seeded or the tables weren't being setup. I had initially thought JPA auto updates the repositories, but I had to do additional configurations to seed the table and data from a file. 
+- Another challenge was debugging the frontend and relaying inputs to the MainController. The debugging messages weren't very insightful as they had just mentioned BindingErrors, so we had to go through manually to really find the root of the problem and fix it. 
+
+## Week 2
+
+**Snapshot**
+![img](https://user-images.githubusercontent.com/28630104/144704295-673b30a0-38c0-41be-bf45-4562b348e82c.png)
+
+**Accomplishments**
+
 - **[1.0.5]** I converted the entire API to a RESTful API (Cart, Items, Users) with exception handling, model assembly, link creation, responseentity returns. Also modified code styling inconsistencies and syntax to match Java standards. I am also constantly adding and updating Postman collection, so that team members can test API.
 - **[1.0.4]** Figured out how to pass data in from frontend to backend through thymeleaf actions and ModelAttributes. 
 - **[1.0.3]** Implement INNER JOIN for multiple tables through the use of IdClass and Composite keys to find user cart, items, item prices, and quantities given a userID.
