@@ -11,6 +11,7 @@
 <p align="center">A fullstack drugstore application built on Spring with Cybersource payment integration</p>
 
 ---
+## Architecture Diagram
 
 ## Technical Requirements
 
@@ -39,6 +40,13 @@ After submitting to create the account
 
 -After the user logs into their account they will then see the products
 ![products](https://user-images.githubusercontent.com/54514627/144565035-4c32b747-895b-46e2-9767-87b63e93f60e.PNG)
+
+-After adding an item to the cart the user will be navigated to the checkout page
+![checkout](https://user-images.githubusercontent.com/54514627/144942966-231a06ad-ef6c-4ccd-8719-ebfbae9d23f6.PNG)
+
+-After successful payment the user will be navigated to the thank you for your order page
+![sucpurchase](https://user-images.githubusercontent.com/54514627/144942879-4b8868db-d087-4851-b8ea-839fb8621463.PNG)
+
 
 ### Development Tools
 
