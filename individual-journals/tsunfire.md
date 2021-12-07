@@ -1,9 +1,10 @@
 # Tsunfire Journal
 
-## Week 2
+## Week 3
 
 **Snapshot**
-![img](https://user-images.githubusercontent.com/28630104/144704295-673b30a0-38c0-41be-bf45-4562b348e82c.png)
+![img](https://i.gyazo.com/42d114b095a60bf7711e1228b9d54649.png)
+
 
 **Accomplishments**
 
@@ -19,7 +20,7 @@
 ## Week 2
 
 **Snapshot**
-![img](https://user-images.githubusercontent.com/28630104/144704295-673b30a0-38c0-41be-bf45-4562b348e82c.png)
+![img](https://i.gyazo.com/fb52a4ffb673f80d4fa4411d4fe35ec1.png)
 
 **Accomplishments**
 
