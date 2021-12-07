@@ -12,7 +12,7 @@
 <P align= "center"> Our main focus for this application was to create a miniture drug store utilizing mySQL as the primary database, REST as the API to grab data, spring boot as the framework, RabbitMQ to send messages between services, and JDK and Gradle utilized as the devlopment tools.</p>  
 ---
 ## Architecture Diagram
-![ERD_with_colored_entities_UML_notation_1](https://user-images.githubusercontent.com/54514627/144970169-67bb6496-5823-48ad-aeef-13e04ae0e509.png)
+<img width="1436" alt="cluster" src="https://user-images.githubusercontent.com/54514627/144972751-f9e7d90a-e9d2-48f3-9841-374725b3dcc1.png">
 
 ## Functional and Technical Requirements
 
@@ -77,13 +77,13 @@ Registering form
 ![cyber](https://user-images.githubusercontent.com/54514627/144970345-4d9529fe-c32e-4edf-a281-43f2832ccdaa.PNG)
 
 ### GKE and GCP
--Cluster
+- Cluster
 <img width="1436" alt="cluster" src="https://user-images.githubusercontent.com/54514627/144972121-e1098841-f51c-4f9c-84fb-d58a51080542.png">
 
--Deployment
--<img width="1440" alt="deployment" src="https://user-images.githubusercontent.com/54514627/144972116-874af73d-9f75-4d16-9356-4de441063aef.png">
+- Deployment
+<img width="1440" alt="deployment" src="https://user-images.githubusercontent.com/54514627/144972116-874af73d-9f75-4d16-9356-4de441063aef.png">
 
--Ingress
+- Ingress
 <img width="1440" alt="ingress" src="https://user-images.githubusercontent.com/54514627/144972138-eeedb65e-e77d-4d9a-8fff-d13ab4122fbb.png">
 
 ### Docker Containers
