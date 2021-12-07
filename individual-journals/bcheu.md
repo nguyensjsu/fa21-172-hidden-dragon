@@ -24,6 +24,10 @@
 ![reg](https://user-images.githubusercontent.com/54514627/144565488-47a7806d-5bf8-4c4f-a85a-f4de82df67f5.PNG)
 ![post_reg](https://user-images.githubusercontent.com/54514627/144565484-c842d847-599b-403f-81ca-a6abcc2ffea1.PNG)
 ![products](https://user-images.githubusercontent.com/54514627/144565486-fe029bb6-689c-493d-bfbd-5a83821953e9.PNG)
+![reset](https://user-images.githubusercontent.com/54514627/144942073-85ecd35e-a4ea-466a-bce5-526bf8e2006e.PNG)
+![resetPass](https://user-images.githubusercontent.com/54514627/144942075-0a7ef804-a0be-4041-9d53-eea3093ad29f.PNG)
+![sucpurchase](https://user-images.githubusercontent.com/54514627/144942094-11d62e35-f10d-447f-a37a-271927ee83dc.PNG)
+![cyber](https://user-images.githubusercontent.com/54514627/144942098-3fb69b82-fa15-4459-8b58-9f2a53179e57.PNG)
 
 
 
