@@ -9,26 +9,29 @@
 <h3 align="center">Hidden Dragon</h3>
 
 <p align="center">A fullstack drugstore application built on Spring with Cybersource payment integration</p>
-
+<P align= "center"> Our main focus for this application was to create a miniture drug store utilizing mySQL as the primary database, REST as the API to grab data, spring boot as the framework, RabbitMQ to send messages between services, and JDK and Gradle utilized as the devlopment tools.</p>  
 ---
 ## Architecture Diagram
+![ERD_with_colored_entities_UML_notation_1](https://user-images.githubusercontent.com/54514627/144970169-67bb6496-5823-48ad-aeef-13e04ae0e509.png)
 
-## Technical Requirements
+## Functional and Technical Requirements
 
 ### Spring Framework
 
 - We initalized the project using the spring initializer website (start.spring.io) in which we created the project with the dependancies of Lombok, Spring web, Thymeleaf, and Spring data JPA.
   ![spring](https://user-images.githubusercontent.com/54514627/143801689-0906eaaf-adeb-41d8-a4cd-0483feef9189.PNG)
-
+- We had the REST APIs running internally in the application. 
 ### Front Office Portal
 -We designed and created a simple user interface in which the user will be walked though a process of either creating or logging in to an exisiting account in order to view the products this allows the user to avoid losing items in their cart without an account upon checking out.   
+
 -Upon loading the site the user will see this screen in which they will either login into their exisiting account or they will register for a new one
 ![home](https://user-images.githubusercontent.com/54514627/144564583-1305c93c-adb8-4bb4-b687-958ccee7229d.PNG)
 
 -If the user needs to register a new account they will see the following screens:
 Registering form
 ![reg](https://user-images.githubusercontent.com/54514627/144564823-aca3683f-1bdd-4753-8e8a-b6e209b3a0f3.PNG)
-After submitting to create the account
+
+-After the user submits their information in the provided form to create the account
 ![post_reg](https://user-images.githubusercontent.com/54514627/144564860-9b5c0180-3972-4ddf-9bb3-0f50c38487a1.PNG)
 
 -After registering the account the user will be prompted by the message to login to see the products:
@@ -38,7 +41,7 @@ After submitting to create the account
 ![reset](https://user-images.githubusercontent.com/54514627/144739457-d4ff74d9-533b-405c-b15f-8554905476f7.PNG)
 ![resetPass](https://user-images.githubusercontent.com/54514627/144739458-93ff753a-b107-4a91-89e5-50e2ceadc774.PNG)
 
--After the user logs into their account they will then see the products
+-After the user successfully logs into their account they will then see the products
 ![products](https://user-images.githubusercontent.com/54514627/144565035-4c32b747-895b-46e2-9767-87b63e93f60e.PNG)
 
 -After adding an item to the cart the user will be navigated to the checkout page
@@ -63,7 +66,26 @@ After submitting to create the account
   - Starter schema initialized with `bios-data.sql` and `bios-schema.sql`
   - Required SQL Query functions setup through CRUDRepository
 
+- **RabbitMQ**
+  - Used to send messages between services
 ### Credit Card Payment Support
 
 - CyberSource Key Created
-  ![cybersource](https://user-images.githubusercontent.com/54514627/143804123-466605bd-f3a6-4298-aafc-8022adc2507a.PNG)
+![cybersource](https://user-images.githubusercontent.com/54514627/143804123-466605bd-f3a6-4298-aafc-8022adc2507a.PNG)
+  
+-After payment has been processed through the checkout page
+![cyber](https://user-images.githubusercontent.com/54514627/144970345-4d9529fe-c32e-4edf-a281-43f2832ccdaa.PNG)
+
+### GKE and GCP
+-Cluster
+<img width="1436" alt="cluster" src="https://user-images.githubusercontent.com/54514627/144972121-e1098841-f51c-4f9c-84fb-d58a51080542.png">
+
+-Deployment
+-<img width="1440" alt="deployment" src="https://user-images.githubusercontent.com/54514627/144972116-874af73d-9f75-4d16-9356-4de441063aef.png">
+
+-Ingress
+<img width="1440" alt="ingress" src="https://user-images.githubusercontent.com/54514627/144972138-eeedb65e-e77d-4d9a-8fff-d13ab4122fbb.png">
+
+### Docker Containers
+- Docker containers showing the application plus mySQL and RabbitMQ running. 
+![docker](https://user-images.githubusercontent.com/54514627/144972478-071aca19-f49f-4100-b1fd-606c0abda2be.PNG)
