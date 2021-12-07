@@ -11,6 +11,7 @@
 <p align="center">A fullstack drugstore application built on Spring with Cybersource payment integration</p>
 <P align= "center"> Our main focus for this application was to create a miniture drug store utilizing mySQL as the primary database, REST as the API to grab data, spring boot as the framework, RabbitMQ to send messages between services, and JDK and Gradle utilized as the devlopment tools.</p>  
 ---
+
 ## Architecture Diagram
 <img width="1436" alt="cluster" src="https://user-images.githubusercontent.com/54514627/144972751-f9e7d90a-e9d2-48f3-9841-374725b3dcc1.png">
 
